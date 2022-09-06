@@ -5,15 +5,17 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import List from './pages/List/List';
 
+import { AppContainer } from './styles/reset';
+
 function App() {
   return (
-    <div className="App">
+    <AppContainer className="App">
       <Header />
       <Routes>
         <Route path="/" element={<List />} />
       </Routes>
       <Footer />
-    </div>
+    </AppContainer>
   );
 }
 

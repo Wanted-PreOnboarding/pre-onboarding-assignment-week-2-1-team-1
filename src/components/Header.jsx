@@ -1,18 +1,52 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import styled from '@emotion/styled';
+import { Color } from '../styles/common';
 
 function Header() {
+  const navigate = useNavigate();
   return (
-    <div>
-      <img src="" alt="메인로고" />
-      <div>검색바</div>
+    <HeaderContainer>
+      <img
+        src='images/logo.png'
+        alt='logo'
+        onClick={() => {navigate('/')}} />
       <nav>
-        <Link to="/">현재 상영작 </Link>
-        <Link to="/">상영 예정 </Link>
-        <Link to="/">영화 순위</Link>
+        <Link to='/'>홈</Link>
+        <Link to='/now_playing'>현재 상영작</Link>
+        <Link to='/upcoming'>상영 예정작</Link>
+        <Link to='/top_rated'>영화 순위</Link>
+        <Link to='/search'>영화 검색</Link>
       </nav>
-    </div>
+    </HeaderContainer>
   );
 }
 
 export default Header;
+
+const HeaderContainer = styled.header`
+  height: 100px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+
+  & img {
+    height: 80px;
+  }
+
+  & a {
+    margin: 40px;
+    font-size: 18px;
+    font-weight: 700;
+    color: ${ Color.GRAY200 };
+    text-decoration: none;
+    
+    &:hover {
+      color: ${ Color.BLUE200 };
+    }
+  }
+`
