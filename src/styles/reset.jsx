@@ -6,11 +6,13 @@ export const AppContainer = styled.div`
   height: 100%;
   margin: 0 auto;
   background-color: #ffffff;
-  & table, div, * {
-    box-sizing: border-box
+  & table,
+  div,
+  * {
+    box-sizing: border-box;
   }
 
-  @media screen and (max-width: 1100px){
+  @media screen and (max-width: 1100px) {
     width: 100%;
   }
-`
+`;

@@ -9,15 +9,18 @@ function Header() {
   return (
     <HeaderContainer>
       <img
-        src='images/logo.png'
-        alt='logo'
-        onClick={() => {navigate('/')}} />
+        src="images/logo.png"
+        alt="logo"
+        onClick={() => {
+          navigate('/');
+        }}
+      />
       <nav>
-        <Link to='/'>홈</Link>
-        <Link to='/now_playing'>현재 상영작</Link>
-        <Link to='/upcoming'>상영 예정작</Link>
-        <Link to='/top_rated'>영화 순위</Link>
-        <Link to='/search'>영화 검색</Link>
+        <Link to="/">홈</Link>
+        <Link to="/now_playing">현재 상영작</Link>
+        <Link to="/upcoming">상영 예정작</Link>
+        <Link to="/top_rated">영화 순위</Link>
+        <Link to="/search">영화 검색</Link>
       </nav>
     </HeaderContainer>
   );
@@ -42,11 +45,11 @@ const HeaderContainer = styled.header`
     margin: 40px;
     font-size: 18px;
     font-weight: 700;
-    color: ${ Color.GRAY200 };
+    color: ${Color.GRAY200};
     text-decoration: none;
-    
+
     &:hover {
-      color: ${ Color.BLUE200 };
+      color: ${Color.BLUE200};
     }
   }
-`
+`;

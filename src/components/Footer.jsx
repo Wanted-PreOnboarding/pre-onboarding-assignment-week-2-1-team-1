@@ -8,22 +8,34 @@ function Footer() {
     <FooterContainer>
       <ul>
         <li>
-          <a target='_blank' href='https://github.com/kagrin97'>강민규</a>
+          <a target="_blank" href="https://github.com/kagrin97">
+            강민규
+          </a>
         </li>
         <li>
-          <a target='_blank' href='https://github.com/sunpl13'>김정수</a>
+          <a target="_blank" href="https://github.com/sunpl13">
+            김정수
+          </a>
         </li>
         <li>
-          <a target='_blank' href='https://github.com/kagriunsnruun97'>류웅선</a>
+          <a target="_blank" href="https://github.com/kagriunsnruun97">
+            류웅선
+          </a>
         </li>
         <li>
-          <a target='_blank' href='https://github.com/BaikSeungJeon'>백승전</a>
+          <a target="_blank" href="https://github.com/BaikSeungJeon">
+            백승전
+          </a>
         </li>
         <li>
-          <a target='_blank' href='https://github.com/kunnyCode'>윤여건</a>
+          <a target="_blank" href="https://github.com/kunnyCode">
+            윤여건
+          </a>
         </li>
         <li>
-          <a target='_blank' href='https://github.com/gomgun'>최홍규</a>
+          <a target="_blank" href="https://github.com/gomgun">
+            최홍규
+          </a>
         </li>
       </ul>
       <div>
@@ -36,7 +48,6 @@ function Footer() {
 export default Footer;
 
 const FooterContainer = styled.footer`
-  
   & ul {
     height: 50px;
     display: flex;
@@ -45,7 +56,7 @@ const FooterContainer = styled.footer`
     align-items: center;
     gap: 70px;
     margin: 0;
-    background-color: ${ Color.GRAY100 };
+    background-color: ${Color.GRAY100};
 
     & li {
       list-style: none;
@@ -56,7 +67,7 @@ const FooterContainer = styled.footer`
         font-size: 14px;
 
         &:hover {
-          color: ${ Color.BLUE200 };
+          color: ${Color.BLUE200};
         }
       }
     }
@@ -64,7 +75,7 @@ const FooterContainer = styled.footer`
 
   & div {
     height: 50px;
-    background-color: ${ Color.GRAY200 };
+    background-color: ${Color.GRAY200};
     text-align: center;
 
     & p {
@@ -75,4 +86,4 @@ const FooterContainer = styled.footer`
       color: #aaaaaa;
     }
   }
-`
+`;
