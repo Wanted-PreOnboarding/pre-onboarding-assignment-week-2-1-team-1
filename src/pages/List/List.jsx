@@ -1,0 +1,7 @@
+import React from 'react';
+
+function List() {
+  return <div>이곳은 리스트</div>;
+}
+
+export default List;
