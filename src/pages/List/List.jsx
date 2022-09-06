@@ -8,11 +8,9 @@ function List() {
     <ListContainer>
       <MovieCard />
     </ListContainer>
-  )
+  );
 }
 
 export default List;
 
-const ListContainer = styled.div`
-  
-`
+const ListContainer = styled.div``;
