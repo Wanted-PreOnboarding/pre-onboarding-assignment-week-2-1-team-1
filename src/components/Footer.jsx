@@ -42,7 +42,7 @@ function Footer() {
         <p>2022 &copy; I.M.LABFLIX Corporation</p>
       </div>
     </FooterContainer>
-  )
+  );
 }
 export default Footer;
 
