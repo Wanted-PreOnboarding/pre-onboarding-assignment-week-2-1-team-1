@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 export default function MovieCard({ poster_path, release_date, title, popularity, vote_average }) {
   const IMG_URL = `https://image.tmdb.org/t/p/w200`;
+
   return (
     <Container>
       <img src={`${IMG_URL}/${poster_path}`} alt="" />
@@ -13,7 +14,7 @@ export default function MovieCard({ poster_path, release_date, title, popularity
           <span>{vote_average}</span>
         </Score>
         <Title>{title}</Title>
-        <span>{release_date}</span>
+        <span>release: {release_date}</span>
       </Description>
     </Container>
   );
@@ -41,23 +42,13 @@ const Container = styled.div`
 `;
 const Description = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 const Score = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  & span {
-    margin: 0 0.5rem;
-  }
 `;
 const Title = styled.h4`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0; ;
 `;
