@@ -4,26 +4,18 @@ import { Routes, Route } from 'react-router';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import List from './pages/List/List';
-import Upcoming from './pages/Upcoming/Upcoming';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
-const queryClient = new QueryClient();
+import { AppContainer } from './styles/reset';
 
 function App() {
   return (
-    <div className="App">
-      <QueryClientProvider client={queryClient}>
-        <Header />
-        <Routes>
-          <Route path="/upcoming" element={<Upcoming />} />
-          <Route path="/" element={<List />} />
-        </Routes>
-        <Footer />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </div>
+    <AppContainer className="App">
+      <Header />
+      <Routes>
+        <Route path="/" element={<List />} />
+      </Routes>
+      <Footer />
+    </AppContainer>
   );
 }
 
