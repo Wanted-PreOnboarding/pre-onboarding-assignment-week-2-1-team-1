@@ -31,7 +31,7 @@ const Container = styled.div`
   border-bottom: 1px solid ${Color.GRAY200};
   &:hover {
     background-color: ${Color.GRAY100};
-    color: ${Color.White};
+    color: white;
     cursor: pointer;
   }
 `;

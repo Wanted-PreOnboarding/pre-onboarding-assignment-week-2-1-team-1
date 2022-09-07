@@ -18,7 +18,7 @@ function Search() {
   const [searchTitle, onConfirmSearchTitle] = useSearch();
   const { autoTitle, onChangeAutoTitle, isFocused, onFocus, onBlur } = useAutoComplete();
 
-  const initialUrl = `/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${searchTitle}`;
+  const initialUrl = `/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${searchTitle}&language=ko-KR`;
 
   const fetchMovies = async pageParam => {
     const data = await apiBase(pageParam);
@@ -101,13 +101,13 @@ export default Search;
 
 const SectionContainer = styled.section`
   display: flex;
-  align-items: flex-start;
-  align-content: flex-start;
-  justify-content: center;
+  justify-content: space-around;
   padding: 40px;
 `;
 
-const SummaryContainer = styled.div``;
+const SummaryContainer = styled.div`
+  margin-right: 15px;
+`;
 
 const ListContainer = styled.div`
   display: flex;

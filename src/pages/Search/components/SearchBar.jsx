@@ -15,6 +15,12 @@ function SearchBar({ title, onConfirmSearchTitle, onChangeAutoTitle, onFocus, on
     onBlur();
   };
 
+  const onKeyUp = e => {
+    if (e.key === 'Enter') {
+      onConfirm();
+    }
+  };
+
   return (
     <Container>
       <InputCaontainer>
@@ -25,8 +31,9 @@ function SearchBar({ title, onConfirmSearchTitle, onChangeAutoTitle, onFocus, on
           onChange={onChangeAutoTitle}
           ref={inputRef}
           onFocus={onFocus}
+          onKeyUp={onKeyUp}
         />
-        <MdClear />
+        <MdClear onClick={() => onChangeAutoTitle('')} />
       </InputCaontainer>
     </Container>
   );

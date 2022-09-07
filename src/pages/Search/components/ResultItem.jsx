@@ -1,14 +1,23 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+
+import Stars from '../../../components/common/Starts';
 
 import { GET_POSTER } from '../../../util/getPoster';
 import { Color } from '../../../styles/common';
 
-function ResultItem({ title, release_date, overview, popularity, poster_path }) {
+function ResultItem({ id, title, vote_average, release_date, overview, popularity, poster_path }) {
+  const navigator = useNavigate();
+
+  const onClick = () => {
+    navigator(`/movie/${id}`);
+  };
+
   return (
     <Container>
-      <ImageWrapper>
+      <ImageWrapper onClick={onClick}>
         <Image
           src={
             poster_path !== null
@@ -19,7 +28,8 @@ function ResultItem({ title, release_date, overview, popularity, poster_path }) 
         />
       </ImageWrapper>
       <DetailContainer>
-        <H1>{title}</H1>
+        <H1 onClick={onClick}>{title}</H1>
+        <Stars vote_average={vote_average} />
         <Span>
           👍{parseInt(popularity)} {release_date}
         </Span>
@@ -30,10 +40,12 @@ function ResultItem({ title, release_date, overview, popularity, poster_path }) 
 }
 
 ResultItem.propTypes = {
+  id: PropTypes.number,
   title: PropTypes.string,
+  vote_average: PropTypes.number,
   release_date: PropTypes.string,
+  popularity: PropTypes.number,
   overview: PropTypes.string,
-  popularity: PropTypes.n,
   poster_path: PropTypes.string,
 };
 
@@ -41,7 +53,7 @@ export default ResultItem;
 
 const Container = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
   border: 1px solid ${Color.GRAY100};
   background-color: #fff;
@@ -62,12 +74,16 @@ const Image = styled.img`
 `;
 
 const DetailContainer = styled.div`
-  width: 950px;
+  width: 750px;
   padding: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 `;
 
 const H1 = styled.h1`
   cursor: pointer;
+  font-size: 1.2rem;
   line-height: 0%;
 `;
 
