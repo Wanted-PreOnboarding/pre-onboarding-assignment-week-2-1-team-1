@@ -7,7 +7,7 @@ import { apiBase } from '../../api/api';
 import MovieCard from '../../components/common/MovieCard';
 
 const { REACT_APP_API_KEY } = process.env;
-const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}`;
+const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}&language=ko`;
 const fetchMovies = async pageParam => {
   const { data } = await apiBase(pageParam);
   return data;
@@ -31,52 +31,29 @@ export default function TopRated() {
   );
   if (!data) return <span>no data</span>;
   return (
-    <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
-      <Container>
-        {data.pages.map(page =>
-          page.results.map(({ id, poster_path, title }) => (
-            <MovieCard key={id} title={title} posterPath={poster_path} />
-          ))
-        )}
-      </Container>
-    </InfiniteScroller>
+    <Container>
+      <h2>영화 순위</h2>
+      <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
+        <CardContinaer>
+          {data.pages.map(page =>
+            page.results.map(({ id, poster_path, title }) => (
+              <MovieCard key={id} title={title} posterPath={poster_path} />
+            ))
+          )}
+        </CardContinaer>
+      </InfiniteScroller>
+    </Container>
   );
 }
-
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  & h2 {
+    margin-left: 5rem;
+  }
+`;
+const CardContinaer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  & > div {
-    margin: 0 0.5rem;
-  }
 `;
-
-// <Container>
-//   {movies.map(
-//     ({
-//       id,
-//       poster_path,
-//       adult,
-//       overview,
-//       release_date,
-//       title,
-//       popularity,
-//       vote_count,
-//       vote_average,
-//     }) => (
-//       <MovieCard
-//         key={id}
-//         id={id}
-//         poster_path={poster_path}
-//         adult={adult}
-//         overview={overview}
-//         release_date={release_date}
-//         title={title}
-//         popularity={popularity}
-//         vote_count={vote_count}
-//         vote_average={vote_average}
-//       />
-//     )
-//   )}
-// </Container>
