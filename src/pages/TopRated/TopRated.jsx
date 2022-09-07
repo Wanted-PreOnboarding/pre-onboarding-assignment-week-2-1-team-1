@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import InfiniteScroller from 'react-infinite-scroller';
-import { AiOutlineArrowUp } from 'react-icons/ai';
+// import { AiOutlineArrowUp } from 'react-icons/ai';
 
 import { apiBase } from '../../api/api';
 import MovieCard from '../../components/common/MovieAdvancedCard';
 import Loader from '../../components/common/Loader';
+import ScorllTop from '../../components/ScrollTop';
 import { Color } from '../../styles/common';
 
 export default function TopRated() {
-  const [isVisibleScrollTop, setIsVisibleScrollTop] = useState(false);
   const { data, fetchNextPage, hasNextPage, isLoading, isFetching } = useInfiniteQuery(
     ['movies'],
     ({ pageParam = initialUrl }) => fetchMovies(pageParam),
@@ -27,21 +27,6 @@ export default function TopRated() {
     }
   );
 
-  useEffect(() => {
-    const clickEventHandler = () => {
-      if (window.innerHeight < window.scrollY) {
-        setIsVisibleScrollTop(true);
-      } else {
-        setIsVisibleScrollTop(false);
-      }
-    };
-    window.addEventListener('scroll', clickEventHandler);
-  }, []);
-
-  const onClickScrollTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   if (isLoading) {
     return <Loader />;
   }
@@ -56,9 +41,7 @@ export default function TopRated() {
           {isFetching && <Loader />}
         </CardContinaer>
       </InfiniteScroller>
-      <ScrollTopButton onClick={onClickScrollTop} isVisible={isVisibleScrollTop}>
-        <AiOutlineArrowUp />
-      </ScrollTopButton>
+      <ScorllTop />
     </Container>
   );
 }
@@ -93,20 +76,4 @@ const CardContinaer = styled.div`
   & > div {
     margin: 0.5rem 0.5rem;
   }
-`;
-const ScrollTopButton = styled.div`
-  width: 64px;
-  height: 64px;
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 50%;
-  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
-  cursor: pointer;
 `;
