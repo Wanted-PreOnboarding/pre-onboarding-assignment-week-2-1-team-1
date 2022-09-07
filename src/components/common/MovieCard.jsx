@@ -14,9 +14,11 @@ function MovieCard({ id, title, posterPath, grade }) {
   };
 
   return (
-    <MovieCardContainer onClick={onClick}>
+    <MovieCardContainer onClick={(onClick)}>
       <div>
-        <img src={`${GET_POSTER}/${posterPath}`} alt={`${title} 포스터`} />
+        <img
+          src={posterPath === null ? 'images/empty-poster.png' : `${GET_POSTER}${posterPath}`}
+          alt={`${title} 포스터`} />
       </div>
       <p>{grade}점</p>
       <p>{title}</p>
