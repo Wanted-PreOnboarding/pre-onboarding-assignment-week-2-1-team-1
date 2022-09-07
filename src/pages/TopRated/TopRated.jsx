@@ -6,7 +6,7 @@ import { AiOutlineArrowUp } from 'react-icons/ai';
 
 import { apiBase } from '../../api/api';
 import MovieCard from '../../components/common/MovieCard';
-import TopRatedLoader from './components/TopRatedLoader';
+import Loader from '../../components/common/Loader';
 
 export default function TopRated() {
   const [isVisibleScrollTop, setIsVisibleScrollTop] = useState(false);
@@ -42,7 +42,7 @@ export default function TopRated() {
   };
 
   if (isLoading) {
-    return <TopRatedLoader />;
+    return <Loader />;
   }
   return (
     <Container>
@@ -54,7 +54,7 @@ export default function TopRated() {
               <MovieCard key={id} title={title} posterPath={poster_path} />
             ))
           )}
-          {isFetching && <TopRatedLoader />}
+          {isFetching && <Loader />}
         </CardContinaer>
       </InfiniteScroller>
       <ScrollTopButton onClick={onClickScrollTop} isVisible={isVisibleScrollTop}>
