@@ -7,6 +7,7 @@ import ScrollTop from './components/ScrollTop';
 import List from './pages/List/List';
 import Detail from './pages/Detail/Detail';
 import Upcoming from './pages/Upcoming/Upcoming';
+import Search from './pages/Search/Search';
 import Now_playing from './pages/Now_playing/Now_playing';
 import { AppContainer } from './styles/reset';
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/now_playing" element={<Now_playing />} />
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="/top_rated" element={<TopRated />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/movie/:id" element={<Detail />} />
           <Route path="/" element={<List />} />
         </Routes>
