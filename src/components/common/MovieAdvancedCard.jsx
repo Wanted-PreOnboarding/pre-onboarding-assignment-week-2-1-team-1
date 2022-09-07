@@ -8,9 +8,18 @@ import PropType from 'prop-types';
 
 const MovieAdvancedCard = ({ movieInfo }) => {
   const navigator = useNavigate();
-  const { adult, id, title, poster_path, release_date, vote_average } = movieInfo;
+  const { adult, id, title, poster_path, release_date, vote_average, overview } = movieInfo;
 
   const forAdult = adult === true;
+
+  const trimTexter = trimText => {
+    if (!trimText) return '내용이 없습니다.';
+    if (trimText.length > 116) {
+      trimText = trimText.slice(0, 116);
+      return trimText + '...';
+    }
+    return trimText;
+  };
 
   return (
     <MovieCardContainer
@@ -22,6 +31,10 @@ const MovieAdvancedCard = ({ movieInfo }) => {
     >
       <ImgWrapper>
         {forAdult && <Img19 src="/images/19.png" alt="19금 로고" />}
+
+        <div></div>
+        <span>{trimTexter(overview)}</span>
+
         <img
           className="movieImg"
           src={poster_path === null ? 'images/empty-poster.png' : `${GET_POSTER}${poster_path}`}
@@ -62,10 +75,37 @@ const Rate = styled.span`
 const ImgWrapper = styled.div`
   position: relative;
 
+  &:hover {
+    & span {
+      display: flex;
+    }
+    & > div {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+
   & img.moiveImg {
     width: 100%;
     object-fit: cover;
     display: flex;
+  }
+
+  & > span {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: #fff;
+    width: 210px;
+    height: 250px;
+    padding: 40px;
+    overflow: hidden;
+  }
+
+  & > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 `;
 
