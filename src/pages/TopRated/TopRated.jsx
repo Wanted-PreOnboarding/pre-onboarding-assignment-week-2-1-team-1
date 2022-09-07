@@ -5,8 +5,9 @@ import InfiniteScroller from 'react-infinite-scroller';
 import { AiOutlineArrowUp } from 'react-icons/ai';
 
 import { apiBase } from '../../api/api';
-import MovieCard from '../../components/common/MovieCard';
+import MovieCard from '../../components/common/MovieAdvancedCard';
 import Loader from '../../components/common/Loader';
+import { Color } from '../../styles/common';
 
 export default function TopRated() {
   const [isVisibleScrollTop, setIsVisibleScrollTop] = useState(false);
@@ -76,16 +77,23 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   scroll-behavior: smooth;
+  align-items: center;
   & h2 {
-    margin-left: 5rem;
+    margin: 0;
+    margin-bottom: 10px;
+    border: 2px solid ${Color.GRAY200};
+    border-radius: 15px;
+    padding: 2px 5px;
   }
 `;
 const CardContinaer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  & > div {
+    margin: 0.5rem 0.5rem;
+  }
 `;
-//todo: animation을 추가하면 좋을 듯 합니다.
 const ScrollTopButton = styled.div`
   width: 64px;
   height: 64px;
