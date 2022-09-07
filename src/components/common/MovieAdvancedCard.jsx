@@ -28,7 +28,7 @@ const MovieAdvancedCard = ({ movieInfo }) => {
       <section>
         <p>{title}</p>
         <RatingBox>
-          <Stars />
+          <Stars vote_average={vote_average} />
           <Rate>평점 {vote_average} </Rate>
         </RatingBox>
         <Release>출시일: {release_date} </Release>
