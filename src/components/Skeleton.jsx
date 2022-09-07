@@ -97,6 +97,7 @@ const Base = styled.span`
   ${({ animation }) => animation && pulseAnimation};
   width: ${({ width, wUnit }) => width && wUnit && `${width}${wUnit}`};
   height: ${({ height, hUnit }) => height && hUnit && `${height}${hUnit}`};
+  margin: 0 30px;
 `;
 
 const Content = styled.span`
