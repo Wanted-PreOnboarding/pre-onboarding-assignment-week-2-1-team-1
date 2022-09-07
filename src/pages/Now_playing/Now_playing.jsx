@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const { REACT_APP_API_KEY } = process.env;
 const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}&language=ko-KR`;
 const fetchMovieList = async pageParam => {
-  const { data } = await apiBase(pageParam);
+  const { data } = await apiBase.get(pageParam);
   return data;
 };
 
@@ -39,7 +39,7 @@ const Now_playing = () => {
   //     console.error(error);
   //   },
   // });
-
+  console.info(data);
   if (!data) return <div>no data</div>;
   return (
     <>
