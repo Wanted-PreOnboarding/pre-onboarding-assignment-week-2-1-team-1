@@ -51,32 +51,3 @@ const Container = styled.div`
     margin: 0 0.5rem;
   }
 `;
-
-// <Container>
-//   {movies.map(
-//     ({
-//       id,
-//       poster_path,
-//       adult,
-//       overview,
-//       release_date,
-//       title,
-//       popularity,
-//       vote_count,
-//       vote_average,
-//     }) => (
-//       <MovieCard
-//         key={id}
-//         id={id}
-//         poster_path={poster_path}
-//         adult={adult}
-//         overview={overview}
-//         release_date={release_date}
-//         title={title}
-//         popularity={popularity}
-//         vote_count={vote_count}
-//         vote_average={vote_average}
-//       />
-//     )
-//   )}
-// </Container>
