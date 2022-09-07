@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import PropType from 'prop-types';
 import { GET_POSTER } from '../../util/getPoster';
 
-function MovieCard({ id, title, posterPath }) {
+function MovieCard({ id, title, posterPath, grade }) {
   const navigator = useNavigate();
 
   const onClick = () => {
@@ -16,8 +16,12 @@ function MovieCard({ id, title, posterPath }) {
   return (
     <MovieCardContainer onClick={onClick}>
       <div>
-        <img src={`${GET_POSTER}/${posterPath}`} alt={`${title} 포스터`} />
+        <img
+          src={posterPath === null ? 'images/empty-poster.png' : `${GET_POSTER}${posterPath}`}
+          alt={`${title} 포스터`}
+        />
       </div>
+      <p>{grade}점</p>
       <p>{title}</p>
     </MovieCardContainer>
   );
