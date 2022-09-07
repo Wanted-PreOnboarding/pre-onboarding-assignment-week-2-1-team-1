@@ -7,7 +7,7 @@ import { apiBase } from '../../api/api';
 import MovieCard from '../../components/common/MovieCard';
 
 const { REACT_APP_API_KEY } = process.env;
-const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}`;
+const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}&language=ko`;
 const fetchMovies = async pageParam => {
   const { data } = await apiBase(pageParam);
   return data;
