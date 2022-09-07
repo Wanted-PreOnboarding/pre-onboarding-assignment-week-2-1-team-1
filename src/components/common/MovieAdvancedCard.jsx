@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 import { MovieCardContainer } from './MovieCard';
 import { GET_POSTER } from '../../util/getPoster';
@@ -10,6 +11,7 @@ const MovieAdvancedCard = ({ movieInfo }) => {
   const { adult, id, title, poster_path, release_date, vote_average } = movieInfo;
 
   const forAdult = adult === true;
+  const starsPercentValue = vote_average * 10;
 
   return (
     <MovieCardContainer
@@ -28,7 +30,7 @@ const MovieAdvancedCard = ({ movieInfo }) => {
         <p>{title}</p>
         <RatingBox>
           <StarsWrapper className="stars">
-            <StartWrapper>
+            <StartWrapper starsPercentValue={starsPercentValue}>
               <Starts src="/images/stars.png" alt="별점" />
             </StartWrapper>
             <GrayStars src="/images/grayStars.png" alt="별점" />
@@ -78,11 +80,15 @@ const StarsWrapper = styled.div`
   display: flex;
 `;
 
+const dynamicWidth = prop => css`
+  width: ${prop.starsPercentValue}px;
+`;
+
 const StartWrapper = styled.div`
   z-index: 1000;
-  width: 30px;
   height: 19px;
   overflow: hidden;
+  ${dynamicWidth}
 `;
 
 const Starts = styled.img`
