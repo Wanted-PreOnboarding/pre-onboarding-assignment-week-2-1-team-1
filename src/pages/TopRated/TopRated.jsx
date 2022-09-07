@@ -31,23 +31,29 @@ export default function TopRated() {
   );
   if (!data) return <span>no data</span>;
   return (
-    <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
-      <Container>
-        {data.pages.map(page =>
-          page.results.map(({ id, poster_path, title }) => (
-            <MovieCard key={id} title={title} posterPath={poster_path} />
-          ))
-        )}
-      </Container>
-    </InfiniteScroller>
+    <Container>
+      <h2>영화 순위</h2>
+      <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
+        <CardContinaer>
+          {data.pages.map(page =>
+            page.results.map(({ id, poster_path, title }) => (
+              <MovieCard key={id} title={title} posterPath={poster_path} />
+            ))
+          )}
+        </CardContinaer>
+      </InfiniteScroller>
+    </Container>
   );
 }
-
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  & h2 {
+    margin-left: 5rem;
+  }
+`;
+const CardContinaer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  & > div {
-    margin: 0 0.5rem;
-  }
 `;
