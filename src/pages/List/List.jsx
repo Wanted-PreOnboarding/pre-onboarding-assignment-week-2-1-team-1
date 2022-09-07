@@ -22,30 +22,27 @@ function List() {
   // }, [])
 
   useEffect(() => {
-      const fetchMovie = async () => {
-          try {
-              const res = await apiBase.get(
-                  `/movie/popular?api_key=${REACT_APP_API_KEY}&language=ko`
-              );
-              setMovie(res.data);
-          } catch (e) {
-              console.log(e);
-          }
+    const fetchMovie = async () => {
+      try {
+        const res = await apiBase.get(`/movie/popular?api_key=${REACT_APP_API_KEY}&language=ko`);
+        setMovie(res.data);
+      } catch (e) {
+        console.log(e);
       }
-      fetchMovie();
+    };
+    fetchMovie();
   }, []);
 
   return (
     <ListContainer>
-      <div className='title-container'>
+      <div className="title-container">
         <p>현재 인기 있는 영화입니다!</p>
-        <Link to='/top_rated'> 영화 순위도 보러가기 </Link>
+        <Link to="/top_rated"> 영화 순위도 보러가기 </Link>
       </div>
 
-      <div className='card-container'>
+      <div className="card-container">
         <MovieCard />
       </div>
-
     </ListContainer>
   );
 }
@@ -77,7 +74,7 @@ const ListContainer = styled.div`
       color: ${Color.BLUE200};
     }
   }
-  
+
   & div.card-container {
     display: flex;
     flex-flow: row wrap;

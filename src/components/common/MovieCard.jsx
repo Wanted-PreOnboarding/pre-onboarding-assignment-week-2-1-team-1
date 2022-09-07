@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function MovieCard() {
   const navigator = useNavigate();
   // const IMG_URL = `https://image.tmdb.org/t/p/w200`;
-  
+
   return (
     <MovieCardContainer
       onClick={() => {
@@ -15,7 +15,7 @@ function MovieCard() {
       }}
     >
       <div>
-        <img src='' alt='' />
+        <img src="" alt="" />
         {/* <img src={`${IMG_URL}/${poster_path}`}  alt='' /> */}
       </div>
       <p> 평점 </p>
