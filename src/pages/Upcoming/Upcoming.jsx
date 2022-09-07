@@ -3,6 +3,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import InfiniteScroller from 'react-infinite-scroller';
+import { BiCameraMovie } from 'react-icons/bi';
 
 import { apiBase } from '../../api/api';
 import MovieCard from '../../components/common/MovieCard';
@@ -33,11 +34,14 @@ function Upcoming() {
   );
 
   if (isLoading)
-    return (
-      <SurveySkeleton color={Color.GRAY200} width={90} wUnit="%" height={100} hUnit="%" rounded />
-    );
+    return <SurveySkeleton color={Color.GRAY200} width={95} wUnit="%" height={900} rounded />;
   return (
     <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
+      <Header>
+        <div>
+          <BiCameraMovie /> 아직 개봉하지않은 영화
+        </div>
+      </Header>
       <Container>
         {data.pages.map(page =>
           page.results.map(({ id, poster_path, title }) => (
@@ -57,5 +61,19 @@ const Container = styled.div`
   justify-content: center;
   & > div {
     margin: 0.5rem 0.5rem;
+  }
+`;
+
+const Header = styled.header`
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 600;
+  justify-content: center;
+  margin-bottom: 10px;
+
+  div {
+    border: 2px solid ${Color.GRAY200};
+    border-radius: 15px;
+    padding: 2px 5px;
   }
 `;

@@ -7,16 +7,16 @@ import { GET_POSTER } from '../../util/getPoster';
 function MovieCard({ id, title, posterPath }) {
   const navigator = useNavigate();
 
+  const onClick = () => {
+    navigator(`/movie/${id}`);
+  };
+
   return (
-    <MovieCardContainer
-      onClick={() => {
-        navigator(`/movie/${id}`);
-      }}
-    >
+    <MovieCardContainer onClick={onClick}>
       <div>
         <img src={`${GET_POSTER}/${posterPath}`} alt={`${title} 포스터`} />
       </div>
-      <p> {title} </p>
+      <p>{title}</p>
     </MovieCardContainer>
   );
 }
@@ -45,6 +45,7 @@ export const MovieCardContainer = styled.div`
 
     & img {
       width: 100%;
+      object-fit: cover;
     }
   }
 
