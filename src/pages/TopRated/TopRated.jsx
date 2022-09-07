@@ -50,9 +50,7 @@ export default function TopRated() {
       <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
         <CardContinaer>
           {data.pages.map(page =>
-            page.results.map(({ id, poster_path, title }) => (
-              <MovieCard key={id} id={id} title={title} posterPath={poster_path} />
-            ))
+            page.results.map(movie => <MovieCard key={movie.id} movieInfo={movie} />)
           )}
           {isFetching && <Loader />}
         </CardContinaer>
