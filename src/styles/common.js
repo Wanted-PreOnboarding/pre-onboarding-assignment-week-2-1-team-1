@@ -3,4 +3,6 @@ export const Color = {
   GRAY200: '#1c1c1c', // 진한 회색
   BLUE100: '#0677b4', // 버튼
   BLUE200: '#0066cc', // 텍스트 호버
+  White: '#FFFFFF',
+  Navy: `#274472`,
 };
