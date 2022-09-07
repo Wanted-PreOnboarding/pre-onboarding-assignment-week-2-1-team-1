@@ -1,6 +1,6 @@
-import { keyframes, css } from "@emotion/react";
-import styled from "@emotion/styled";
-import React, { useMemo } from "react";
+import { keyframes, css } from '@emotion/react';
+import styled from '@emotion/styled';
+import React, { useMemo } from 'react';
 
 // interface Props {
 //     width?: number;
@@ -14,7 +14,6 @@ import React, { useMemo } from "react";
 //     color?: string;
 //     style?: React.CSSProperties;
 //   }
-
 
 // const Placeholder: React.FC = () => (
 //     <ItemContainer>
@@ -32,7 +31,7 @@ import React, { useMemo } from "react";
 //         <SurveySkeleton width={158} height={14} rounded />
 //       </DateContainer>
 //       <SurveySkeleton width={100} wUnit="%" height={36} />
-  
+
 //       <Hashtag>
 //         <SurveySkeleton width={170} height={12} rounded />
 //       </Hashtag>
@@ -46,12 +45,12 @@ const SurveySkeleton = ({
   circle,
   rounded,
   count,
-  hUnit = "px",
-  wUnit = "px",
+  hUnit = 'px',
+  wUnit = 'px',
   animation = true,
-  color = "#f4f4f4",
+  color = '#f4f4f4',
 }) => {
-  const content = useMemo(() => [...Array({ length: count })].map(() => "-").join(""), [count]);
+  const content = useMemo(() => [...Array({ length: count })].map(() => '-').join(''), [count]);
   return (
     <Base
       style={style}
@@ -87,7 +86,10 @@ const pulseAnimation = css`
   animation: ${pulseKeyframe} 1.5s ease-in-out infinite;
 `;
 
-const Base = styled.span<Props>`
+const Base =
+  styled.span <
+  Props >
+  `
   ${({ color }) => color && `background-color: ${color}`};
   ${({ rounded }) => rounded && `border-radius: 8px`};
   
