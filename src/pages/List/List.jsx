@@ -49,7 +49,7 @@ function List() {
         <div className="card-container">
           {data.pages.map(page =>
             page.results.map(({ id, poster_path, title }) => (
-              <MovieCard key={id} title={title} posterPath={poster_path} />
+              <MovieCard key={id} id={id} title={title} posterPath={poster_path} />
             ))
           )}
         </div>
