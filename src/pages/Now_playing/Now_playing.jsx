@@ -38,14 +38,8 @@ const Now_playing = () => {
       <InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
         <Container>
           {data.pages.map(page =>
-            page.results.map(({ id, poster_path, title, popularity }) => (
-              <MovieAdvancedCard
-                key={id}
-                id={id}
-                title={title}
-                posterPath={poster_path}
-                popularity={popularity}
-              />
+            page.results.map(movieInfo => (
+              <MovieAdvancedCard key={movieInfo.id} movieInfo={movieInfo} />
             ))
           )}
         </Container>

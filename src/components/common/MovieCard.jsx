@@ -35,10 +35,6 @@ export const MovieCardContainer = styled.div`
   margin: 5px;
   overflow: hidden;
 
-  &.extended {
-    height: 330px;
-  }
-
   & div {
     width: 100%;
     height: 250px;
@@ -61,5 +57,9 @@ export const MovieCardContainer = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  &.extended {
+    height: 360px;
   }
 `;
