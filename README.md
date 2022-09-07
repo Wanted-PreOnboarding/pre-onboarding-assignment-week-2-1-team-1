@@ -2,24 +2,42 @@
 
 ## 목차
 
-- [1. 프로젝트 Config](#1-프로젝트-config)
-  - 데모페이지
-  - 코딩컨벤션
-  - 팀원 소개
-- [2. 설치, 환경설정, 실행방법](#2-설치-환경설정-실행방법)
-  - 설치, 환경 설정
-  - 실행
-- [3. 구현된 기능 목록](#3-구현된-기능-목록)
-  - 사용자 기능
-  - 관리자 기능
-- [4. 사용한 프레임워크및 라이브러리](#4-사용한-프레임워크및-라이브러리)
-- [5. 폴더 구조](#5-폴더-구조)
-  - 폴더 구조 설명
-  - 폴더 구조 tree
+<details>
+<summary>펼쳐보기 🗂</summary>
+
+[1. 프로젝트 Config](#1-프로젝트-config)
+
+- 데모페이지
+- 코딩컨벤션
+- 팀원 소개
+
+[2. 설치, 환경설정, 실행방법](#2-설치-환경설정-실행방법)
+
+- 설치, 환경 설정
+- 실행
+
+[3. 구현된 기능 목록](#3-구현된-기능-목록)
+
+- 공통
+- movies / 리스트 페이지
+- movies / 상세 페이지
+- search
+
+[4. 사용한 프레임워크및 라이브러리](#4-사용한-프레임워크및-라이브러리)
+
+[5. 캐쉬에 대하여](#5-캐쉬에-대하여)
+
+[6. 폴더 구조](#6-폴더-구조)
+
+- 폴더 구조 설명
+- 폴더 구조 tree
+</details>
+
+---
 
 ## 1. 프로젝트 Config
 
-### (1) 데모페이지
+### (1) [데모페이지]() //추가해야함
 
 ### (2) [코딩 컨벤션 노션주소](https://instinctive-moustache-aba.notion.site/WPO-FE-6-1-Coding-Convention-6a0123a0196343ea88c8434a3c157812#d00f53fad5c545a4b1e2aba7f6c62f31)
 
@@ -52,8 +70,8 @@
   - [x] Loading 상태 표기
   - [x] Infinite scroll
   - [x] 스크롤 감지하여 ScrollUp button 표시되도록, 누를 시 최상단으로 스크롤 이동
-  - [ ] API Response 데이터 캐쉬 (라이브러리 사용)
-    - 캐싱에 대한 간단한 개념을 글로 작성해서 README에 포함 or 링크형태로 연결해주세요
+  - [x] API Response 데이터 캐쉬 (라이브러리 사용)
+  - [ ] 캐싱에 대한 간단한 개념을 글로 작성해서 README에 포함 or 링크형태로 연결해주세요
 - movies / 리스트 페이지
   - [x] 한번에 가져올 데이터 최대 20
   - [x] 제목, 포스터, 별점 표시
@@ -70,30 +88,28 @@
 
 - ## [axios](https://axios-http.com/)
 
-  - 호환성
+  - _호환성_: 기존의 fetch의 경우 웹 브라우저가 구버전일경우 지원하지 않는 경우가 많습니다. axios의 경우 훨씬더 지원 범위가 넓기 때문에 사용합니다.
 
-    - 기존의 fetch의 경우 웹 브라우저가 구버전일경우 지원하지 않는 경우가 많습니다.
-      axios의 경우 훨씬더 지원 범위가 넓기 때문에 사용합니다.
+  - _가독성_: fetch는 url을 입력할때, Param이나 Query부분을 문자열 형태로 길게 작성해야하는 반면, axios는 객체의 형태로 Param, Query를 설정할 수 있습니다.
 
-  - 가독성
+  - _편의성_: 보통 fetch를 이용하는 경우 데이터를 전달받을 때마다 JSON 형태로 변환해주는 작업이 필요합니다. 하지만 axios는 자동으로 JSON으로 변환해 주기 때문에 더 편하게 사용할 수 있습니다.
 
-    - fetch는 url을 입력할때, Param이나 Query부분을 문자열 형태로 길게 작성해야하는 반면, axios는 객체의 형태로 Param, Query를 설정할 수 있습니다.
-
-  - 편의성
-
-    - 보통 fetch를 이용하는 경우 데이터를 전달받을 때마다 JSON 형태로 변환해주는 작업이 필요합니다. 하지만 axios는 자동으로 JSON으로 변환해 주기 때문에 더 편하게 사용할 수 있습니다.
-
-  - 보안
-    - axios를 사용할 경우 Client Side에서 발생할 수 있는 XSRF 공격을 막아줍니다.
+  - _보안_: axios를 사용할 경우 Client Side에서 발생할 수 있는 XSRF 공격을 막아줍니다.
 
 - ## [@emotion](https://emotion.sh/docs/introduction)
 
-  - emotion은 keyframe을 제공합니다. 따라서 모바일 화면에 대응하기 용이할 것 같다는 이유로 선정하였습니다.
+  - emotion은 `keyframe`을 제공합니다. 따라서 모바일 화면에 대응하기 용이할 것 같다는 이유로 선정하였습니다.
 
 - ## [TanStack Query](https://tanstack.com/query/v4/?from=reactQueryV3&original=https://react-query-v3.tanstack.com/)
+  - 캐쉬를 위해서 사용했습니다.
 - ## [React Infinite Scroller](https://github.com/danbovey/react-infinite-scroller)
+  - `TanStack Query`에서 제공하는 `useInfiniteQuery`와의 호환성이 좋아서 채택하였습니다. *useInfiniteQuery*는 여러 값을 반환합니다. 그중 `fetchNextPage`와 `hasNextPage`를 통해서 *React Infinite Scroller*가 다음으로 실행해야하는 함수와 페이지의 존재 여부를 파악할 수 있습니다.
 
-## 5. 폴더 구조 _(수정해야함)_
+## 5. 캐쉬에 대하여
+
+> 캐쉬는 무엇이다!
+
+## 6. 폴더 구조 _(수정해야함)_
 
 - ### 폴더 구조 설명
 
