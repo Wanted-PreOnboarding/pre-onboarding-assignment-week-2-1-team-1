@@ -13,4 +13,8 @@ function List() {
 
 export default List;
 
-const ListContainer = styled.div``;
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+`;
