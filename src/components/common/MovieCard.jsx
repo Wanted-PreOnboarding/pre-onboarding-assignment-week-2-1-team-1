@@ -14,7 +14,7 @@ function MovieCard({ id, title, posterPath }) {
       }}
     >
       <div>
-        <img src={`${IMG_URL}/${posterPath}`} alt="" />
+        <img src={`${IMG_URL}/${posterPath}`} alt="포스터" />
       </div>
       <p> {title} </p>
     </MovieCardContainer>
@@ -40,6 +40,7 @@ const MovieCardContainer = styled.div`
     height: 250px;
     border-radius: 20px;
     background-color: #dddddd;
+    overflow: hidden;
 
     & img {
       width: 100%;
