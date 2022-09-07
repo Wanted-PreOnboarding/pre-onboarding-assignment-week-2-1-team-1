@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import Stars from './Starts';
 import { useNavigate } from 'react-router-dom';
 import { MovieCardContainer } from './MovieCard';
 import { GET_POSTER } from '../../util/getPoster';
@@ -11,7 +11,6 @@ const MovieAdvancedCard = ({ movieInfo }) => {
   const { adult, id, title, poster_path, release_date, vote_average } = movieInfo;
 
   const forAdult = adult === true;
-  const starsPercentValue = vote_average * 10;
 
   return (
     <MovieCardContainer
@@ -29,12 +28,7 @@ const MovieAdvancedCard = ({ movieInfo }) => {
       <section>
         <p>{title}</p>
         <RatingBox>
-          <StarsWrapper className="stars">
-            <StartWrapper starsPercentValue={starsPercentValue}>
-              <Starts src="/images/stars.png" alt="별점" />
-            </StartWrapper>
-            <GrayStars src="/images/grayStars.png" alt="별점" />
-          </StarsWrapper>
+          <Stars />
           <Rate>평점 {vote_average} </Rate>
         </RatingBox>
         <Release>출시일: {release_date} </Release>
@@ -57,6 +51,10 @@ const RatingBox = styled.section`
   box-sizing: border-box;
 `;
 
+const Rate = styled.span`
+  font-size: 14px;
+`;
+
 const ImgWrapper = styled.div`
   position: relative;
 
@@ -73,40 +71,6 @@ const Img19 = styled.img`
   width: 100%;
   height: 100%;
   background-color: gray;
-`;
-
-const StarsWrapper = styled.div`
-  position: relative;
-  display: flex;
-`;
-
-const dynamicWidth = prop => css`
-  width: ${prop.starsPercentValue}px;
-`;
-
-const StartWrapper = styled.div`
-  z-index: 1000;
-  height: 19px;
-  overflow: hidden;
-  ${dynamicWidth}
-`;
-
-const Starts = styled.img`
-  position: relative;
-  z-index: 10;
-  height: 19px;
-  width: 100px;
-`;
-
-const GrayStars = styled.img`
-  position: absolute;
-  top: 0;
-  width: 100px;
-  height: 19px;
-`;
-
-const Rate = styled.span`
-  font-size: 14px;
 `;
 
 const Release = styled.span`
