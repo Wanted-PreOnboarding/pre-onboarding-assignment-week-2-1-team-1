@@ -22,7 +22,11 @@ const MovieAdvancedCard = ({ movieInfo }) => {
     >
       <ImgWrapper>
         {forAdult && <Img19 src="/images/19.png" alt="19금 로고" />}
-        <img className="movieImg" src={`${GET_POSTER}${poster_path}`} alt={`${title} 포스터`} />
+        <img
+          className="movieImg"
+          src={poster_path === null ? 'images/empty-poster.png' : `${GET_POSTER}${poster_path}`}
+          alt={`${title} 포스터`}
+        />
       </ImgWrapper>
 
       <section>
