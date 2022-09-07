@@ -5,7 +5,7 @@ import InfiniteScroller from 'react-infinite-scroller';
 import { BiCameraMovie } from 'react-icons/bi';
 
 import Movie from '../../api/movie';
-import MovieCard from '../../components/common/MovieCard';
+import MovieAdvancedCard from '../../components/common/MovieAdvancedCard';
 import SurveySkeleton from '../../components/Skeleton';
 import { Color } from '../../styles/common';
 
@@ -23,8 +23,8 @@ function Upcoming() {
       </Header>
       <Container>
         {data.pages.map(page =>
-          page.results.map(({ id, poster_path, title }) => (
-            <MovieCard id={id} key={id} title={title} posterPath={poster_path} />
+          page.results.map(movieInfo => (
+            <MovieAdvancedCard key={movieInfo.id} movieInfo={movieInfo} />
           ))
         )}
       </Container>
