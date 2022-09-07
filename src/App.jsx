@@ -5,6 +5,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import List from './pages/List/List';
 import Upcoming from './pages/Upcoming/Upcoming';
+import Now_playing from './pages/Now_playing/Now_playing';
+import { AppContainer } from './styles/reset';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -14,10 +16,11 @@ const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="App">
+    <AppContainer className="App">
       <QueryClientProvider client={queryClient}>
         <Header />
         <Routes>
+          <Route path="/now_playing" element={<Now_playing />} />
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="/top_rated" element={<TopRated />} />
           <Route path="/" element={<List />} />
@@ -25,7 +28,7 @@ function App() {
         <Footer />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-    </div>
+    </AppContainer>
   );
 }
 

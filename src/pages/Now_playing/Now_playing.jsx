@@ -1,22 +1,22 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import InfiniteScroller from 'react-infinite-scroller';
 
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { apiBase } from '../../api/api';
+import InfiniteScroll from 'react-infinite-scroller';
 import MovieCard from '../../components/common/MovieCard';
+import styled from '@emotion/styled';
 
 const { REACT_APP_API_KEY } = process.env;
-const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}&language=ko`;
-const fetchMovies = async pageParam => {
-  const { data } = await apiBase(pageParam);
+const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}&language=ko-KR`;
+const fetchMovieList = async pageParam => {
+  const { data } = await apiBase.get(pageParam);
   return data;
 };
 
-export default function TopRated() {
+const Now_playing = () => {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    ['movies'],
-    ({ pageParam = initialUrl }) => fetchMovies(pageParam),
+    ['now_playing'],
+    ({ pageParam = initialUrl }) => fetchMovieList(pageParam),
     {
       cacheTime: 3600,
       staleTime: 90,
@@ -29,31 +29,32 @@ export default function TopRated() {
       },
     }
   );
-  if (!data) return <span>no data</span>;
+
+  console.info(data);
+  if (!data) return <div>no data</div>;
   return (
-    <Container>
-      <h2>영화 순위</h2>
-      <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
-        <CardContinaer>
+    <>
+      <h2>현재 상영중인 영화</h2>
+      <InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
+        <Container>
           {data.pages.map(page =>
             page.results.map(({ id, poster_path, title }) => (
               <MovieCard key={id} title={title} posterPath={poster_path} />
             ))
           )}
-        </CardContinaer>
-      </InfiniteScroller>
-    </Container>
+        </Container>
+      </InfiniteScroll>
+    </>
   );
-}
+};
+
+export default Now_playing;
+
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  & h2 {
-    margin-left: 5rem;
-  }
-`;
-const CardContinaer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  & > div {
+    margin: 0 0.5rem;
+  }
 `;

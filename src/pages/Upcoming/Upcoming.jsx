@@ -1,35 +1,79 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import Movie from '../../api/movie';
-import { GET_POSTER } from '../../util/getPoster';
+import styled from '@emotion/styled';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import InfiniteScroller from 'react-infinite-scroller';
+import { BiCameraMovie } from 'react-icons/bi';
 
-import { useQuery } from '@tanstack/react-query';
+import { apiBase } from '../../api/api';
+import MovieCard from '../../components/common/MovieCard';
+import SurveySkeleton from '../../components/Skeleton';
+import { Color } from '../../styles/common';
+
+const { REACT_APP_API_KEY } = process.env;
+const initialUrl = `/movie/upcoming?api_key=${REACT_APP_API_KEY}`;
+const fetchMovies = async pageParam => {
+  const { data } = await apiBase(pageParam);
+  return data;
+};
 
 function Upcoming() {
-  const [movies, setMovies] = useState([]);
-  const [pages] = useState(1);
+  const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    ['upComingMovie'],
+    ({ pageParam = initialUrl }) => fetchMovies(pageParam),
+    {
+      cacheTime: 3600,
+      staleTime: 90,
+      getNextPageParam: lastPage => {
+        const { page, total_pages } = lastPage;
+        if (page >= total_pages) return undefined;
+        const nextUrl = initialUrl + `&page=${page + 1}`;
+        return nextUrl;
+      },
+    }
+  );
 
-  useQuery(['upComingMovie', pages], Movie.getUpcomingMovie, {
-    onSuccess: data => {
-      setMovies(data.data.results);
-    },
-    onError: error => {
-      console.error(error);
-    },
-  });
-
+  if (isLoading)
+    return <SurveySkeleton color={Color.GRAY200} width={95} wUnit="%" height={900} rounded />;
   return (
-    <div>
-      {movies.length &&
-        movies.map(movie => (
-          <div key={movie.id}>
-            {movie.original_title}
-            <img width="20px" src={GET_POSTER + movie.poster_path}></img>
-            {movie.vote_average}
-          </div>
-        ))}
-    </div>
+    <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
+      <Header>
+        <div>
+          <BiCameraMovie /> 아직 개봉하지않은 영화
+        </div>
+      </Header>
+      <Container>
+        {data.pages.map(page =>
+          page.results.map(({ id, poster_path, title }) => (
+            <MovieCard id={id} key={id} title={title} posterPath={poster_path} />
+          ))
+        )}
+      </Container>
+    </InfiniteScroller>
   );
 }
 
 export default Upcoming;
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  & > div {
+    margin: 0.5rem 0.5rem;
+  }
+`;
+
+const Header = styled.header`
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 600;
+  justify-content: center;
+  margin-bottom: 10px;
+
+  div {
+    border: 2px solid ${Color.GRAY200};
+    border-radius: 15px;
+    padding: 2px 5px;
+  }
+`;
