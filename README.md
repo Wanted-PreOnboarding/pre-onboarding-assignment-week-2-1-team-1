@@ -1,70 +1,129 @@
-# Getting Started with Create React App
+# 📺 I.M.LABFLIX
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 목차
 
-## Available Scripts
+<details>
+<summary>펼쳐보기 🗂</summary>
 
-In the project directory, you can run:
+[1. 프로젝트 Config](#1-프로젝트-config)
 
-### `npm start`
+- 데모페이지
+- 코딩컨벤션
+- 팀원 소개
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[2. 설치, 환경설정, 실행방법](#2-설치-환경설정-실행방법)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 설치, 환경 설정
+- 실행
 
-### `npm test`
+[3. 구현된 기능 목록](#3-구현된-기능-목록)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 공통
+- movies / 리스트 페이지
+- movies / 상세 페이지
+- search
 
-### `npm run build`
+[4. 사용한 프레임워크및 라이브러리](#4-사용한-프레임워크및-라이브러리)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[5. 캐쉬에 대하여](#5-캐쉬에-대하여)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[6. 폴더 구조](#6-폴더-구조)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 폴더 구조 설명
+- 폴더 구조 tree
+</details>
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 1. 프로젝트 Config
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### (1) [데모페이지]() //추가해야함
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### (2) [코딩 컨벤션 노션주소](https://instinctive-moustache-aba.notion.site/WPO-FE-6-1-Coding-Convention-6a0123a0196343ea88c8434a3c157812#d00f53fad5c545a4b1e2aba7f6c62f31)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### (3) 팀원 소개
 
-## Learn More
+| 강민규   | 백승전        | 류웅선    | 윤여건      | 김정수    | ✨최홍규 (팀장) |
+| -------- | ------------- | --------- | ----------- | --------- | --------------- |
+| kagrin97 | BaikSeungJeon | unsnruu   | kunnyCode   | sunpl13   | gomgun-lab      |
+| upcoming | home page     | top-rated | now playing | 영화 상세 | 검색 페이지     |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 2. 설치, 환경설정, 실행방법
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ### 설치, 환경 설정
 
-### Code Splitting
+  ```bash
+  > git clone https://github.com/wanted-fe-6/wanted-pre-onboarding-fe-6-2-1.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  > npm install
+  ```
 
-### Analyzing the Bundle Size
+- ### 실행
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  ```bash
+  > npm run start // 프로젝트가 실행됩니다.
+  ```
 
-### Making a Progressive Web App
+## 3. 구현된 기능 목록
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- 공통
+  - [x] Loading 상태 표기
+  - [x] Infinite scroll
+  - [x] 스크롤 감지하여 ScrollUp button 표시되도록, 누를 시 최상단으로 스크롤 이동
+  - [x] API Response 데이터 캐쉬 (라이브러리 사용)
+  - [x] 캐싱에 대한 간단한 개념을 글로 작성해서 README에 포함 or 링크형태로 연결해주세요
+- movies / 리스트 페이지
+  - [x] 한번에 가져올 데이터 최대 20
+  - [x] 제목, 포스터, 별점 표시
+  - [x] 포스터 없는 경우, 대체 이미지 사용
+- movie / 상세 페이지
+  - [ ] 비디오 있는 경우, 페이지 진입 시 자동으로 비디오 플레이
+  - [ ] 제목, 포스터, 별점, 제작 연도, 장르 데이터 활용해서 UI 표기
+  - [ ] 그 외의 데이터 추가 활용 여부는 자유
+- search
+  - [ ] 제목, 포스터, 별점
+  - [ ] 포스터 없는 경우, 대체 이미지 사용
 
-### Advanced Configuration
+## 4. 사용한 프레임워크및 라이브러리
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- ## [axios](https://axios-http.com/)
 
-### Deployment
+  - _호환성_: 기존의 fetch의 경우 웹 브라우저가 구버전일경우 지원하지 않는 경우가 많습니다. axios의 경우 훨씬더 지원 범위가 넓기 때문에 사용합니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  - _가독성_: fetch는 url을 입력할때, Param이나 Query부분을 문자열 형태로 길게 작성해야하는 반면, axios는 객체의 형태로 Param, Query를 설정할 수 있습니다.
 
-### `npm run build` fails to minify
+  - _편의성_: 보통 fetch를 이용하는 경우 데이터를 전달받을 때마다 JSON 형태로 변환해주는 작업이 필요합니다. 하지만 axios는 자동으로 JSON으로 변환해 주기 때문에 더 편하게 사용할 수 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  - _보안_: axios를 사용할 경우 Client Side에서 발생할 수 있는 XSRF 공격을 막아줍니다.
+
+- ## [@emotion](https://emotion.sh/docs/introduction)
+
+  - emotion은 `keyframe`을 제공합니다. 따라서 모바일 화면에 대응하기 용이할 것 같다는 이유로 선정하였습니다.
+
+- ## [TanStack Query](https://tanstack.com/query/v4/?from=reactQueryV3&original=https://react-query-v3.tanstack.com/)
+  - 캐쉬를 위해서 사용했습니다.
+- ## [React Infinite Scroller](https://github.com/danbovey/react-infinite-scroller)
+  - `TanStack Query`에서 제공하는 `useInfiniteQuery`와의 호환성이 좋아서 채택하였습니다. *useInfiniteQuery*는 여러 값을 반환합니다. 그중 `fetchNextPage`와 `hasNextPage`를 통해서 *React Infinite Scroller*가 다음으로 실행해야하는 함수와 페이지의 존재 여부를 파악할 수 있습니다.
+
+## 5. 캐쉬에 대하여
+
+> 캐쉬는 컴퓨터 공학에서 자주 등장하는 용어입니다. CPU에서 메모리에 접근하는 시간을 줄이기 위해서 데이터를 저장하기 위해 사용하는 별도의 공간입니다. 그 연장선에서 캐쉬는 자주 사용되는 데이터 등을 별도로 보관하여 보다 빠르게 데이터에 접근할 수 있도록 하는 전반적인 방법을 지칭합니다. 캐싱을 사용하면 불필요한 api fetching 등의 낭비를 줄일 수 있습니다.
+
+## 6. 폴더 구조 _(수정해야함)_
+
+- ### 폴더 구조 설명
+
+  | 폴더           | 용도                                         |
+  | -------------- | -------------------------------------------- |
+  | **api**        |                                              |
+  | **components** | 페이지들 간에 공유되는 컴포넌트의 모음       |
+  | **pages**      | 페이지와 페이지에서 사용되는 컴포넌트의 모음 |
+  | **styles**     | 자주쓰이는 스타일과 글로벌 리셋파일          |
+  | **utils**      | 재사용할수있는 모듈을 만든 폴더              |
+
+  <details>
+  <summary>🎄 폴더 tree 접기/펼치기</summary>
+  <pre>
+
+</pre>
+</details>

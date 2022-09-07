@@ -4,6 +4,7 @@ import React, { useMemo } from 'react';
 
 import PropType from 'prop-types';
 
+//
 // interface Props {
 //     width?: number;
 //     height?: number;
@@ -88,18 +89,16 @@ const pulseAnimation = css`
   animation: ${pulseKeyframe} 1.5s ease-in-out infinite;
 `;
 
-const Base =
-  styled.span <
-  Props >
-  `
+const Base = styled.span`
   ${({ color }) => color && `background-color: ${color}`};
   ${({ rounded }) => rounded && `border-radius: 8px`};
-  
+
   ${({ circle }) => circle && `border-radius: 50%`};
   ${({ width, height }) => (width || height) && `display: block`};
   ${({ animation }) => animation && pulseAnimation};
   width: ${({ width, wUnit }) => width && wUnit && `${width}${wUnit}`};
   height: ${({ height, hUnit }) => height && hUnit && `${height}${hUnit}`};
+  margin: 0 30px;
 `;
 
 const Content = styled.span`
