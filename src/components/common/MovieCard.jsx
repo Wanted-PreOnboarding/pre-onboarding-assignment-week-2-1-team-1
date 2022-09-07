@@ -32,7 +32,7 @@ const MovieCardContainer = styled.div`
     height: 250px;
     border-radius: 20px;
     background-color: #dddddd;
-    
+
     & img {
       width: 100%;
     }
