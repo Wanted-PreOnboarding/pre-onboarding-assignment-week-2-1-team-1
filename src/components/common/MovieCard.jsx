@@ -37,20 +37,17 @@ export const MovieCardContainer = styled.div`
   margin: 10px;
   overflow: hidden;
   cursor: pointer;
-
   ${props =>
     props.forAdult &&
     css`
       cursor: not-allowed;
     `}
-
   & > div {
     height: 250px;
     border-radius: 20px;
     background-color: #dddddd;
     overflow: hidden;
     box-shadow: 0 4px 4px rgba(185, 185, 185, 0.8);
-
     & > div > img {
       width: 100%;
       object-fit: cover;
@@ -69,7 +66,6 @@ export const MovieCardContainer = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-
   &.extended {
     height: 360px;
   }
