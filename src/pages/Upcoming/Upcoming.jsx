@@ -1,37 +1,16 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { useInfiniteQuery } from '@tanstack/react-query';
 import InfiniteScroller from 'react-infinite-scroller';
 import { BiCameraMovie } from 'react-icons/bi';
 
-import { apiBase } from '../../api/api';
+import Movie from '../../api/movie';
 import MovieCard from '../../components/common/MovieCard';
 import SurveySkeleton from '../../components/Skeleton';
 import { Color } from '../../styles/common';
 
-const { REACT_APP_API_KEY } = process.env;
-const initialUrl = `/movie/upcoming?api_key=${REACT_APP_API_KEY}`;
-const fetchMovies = async pageParam => {
-  const { data } = await apiBase(pageParam);
-  return data;
-};
-
 function Upcoming() {
-  const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    ['upComingMovie'],
-    ({ pageParam = initialUrl }) => fetchMovies(pageParam),
-    {
-      cacheTime: 3600,
-      staleTime: 90,
-      getNextPageParam: lastPage => {
-        const { page, total_pages } = lastPage;
-        if (page >= total_pages) return undefined;
-        const nextUrl = initialUrl + `&page=${page + 1}`;
-        return nextUrl;
-      },
-    }
-  );
+  const { data, isLoading, fetchNextPage, hasNextPage } = Movie.getMovieList('upcoming');
 
   if (isLoading)
     return <SurveySkeleton color={Color.GRAY200} width={95} wUnit="%" height={900} rounded />;
