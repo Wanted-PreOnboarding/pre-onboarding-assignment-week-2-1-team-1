@@ -5,6 +5,7 @@ import InfiniteScroller from 'react-infinite-scroller';
 
 import { apiBase } from '../../api/api';
 import MovieCard from '../../components/common/MovieCard';
+import { AiOutlineArrowUp } from 'react-icons/ai';
 
 const { REACT_APP_API_KEY } = process.env;
 const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}&language=ko`;
@@ -42,10 +43,15 @@ export default function TopRated() {
           )}
         </CardContinaer>
       </InfiniteScroller>
+      <ScrollTopButton>
+        <AiOutlineArrowUp />
+      </ScrollTopButton>
     </Container>
   );
 }
 const Container = styled.div`
+  width: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
   & h2 {
@@ -56,4 +62,17 @@ const CardContinaer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+`;
+const ScrollTopButton = styled.div`
+  width: 64px;
+  height: 64px;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  background-color: red;
+  border-radius: 50%;
 `;
