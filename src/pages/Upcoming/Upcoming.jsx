@@ -33,9 +33,7 @@ function Upcoming() {
   );
 
   if (isLoading)
-    return (
-      <SurveySkeleton color={Color.GRAY200} width={90} wUnit="%" height={100} hUnit="%" rounded />
-    );
+    return <SurveySkeleton color={Color.GRAY200} width={95} wUnit="%" height={900} rounded />;
   return (
     <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
       <Container>
