@@ -35,7 +35,7 @@ MovieCard.propTypes = {
   title: PropType.string,
 };
 
-export const MovieCardContainer = styled.div`
+const MovieCardContainer = styled.div`
   width: 200px;
   height: 350px;
   margin: 10px;
