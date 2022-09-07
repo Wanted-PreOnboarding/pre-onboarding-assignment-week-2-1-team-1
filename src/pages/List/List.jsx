@@ -48,8 +48,8 @@ function List() {
       <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
         <div className="card-container">
           {data.pages.map(page =>
-            page.results.map(({ id, poster_path, title }) => (
-              <MovieCard key={id} title={title} posterPath={poster_path} />
+            page.results.map(({ id, poster_path, title, vote_average }) => (
+              <MovieCard key={id} title={title} posterPath={poster_path} grade={vote_average}/>
             ))
           )}
         </div>

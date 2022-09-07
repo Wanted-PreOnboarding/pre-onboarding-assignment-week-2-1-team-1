@@ -17,8 +17,8 @@ export default function ScrollTop() {
 
   useEffect(() => {
     const handleShowBtn = () => {
-      if (window.scrollY > 500) {
-        // 500만큼 내려오면 버튼 보이기
+      if (window.scrollY > 1) {
+        // 스크롤 감지 시 버튼 출력
         setShowBtn(true);
       } else {
         // 그 외엔 false

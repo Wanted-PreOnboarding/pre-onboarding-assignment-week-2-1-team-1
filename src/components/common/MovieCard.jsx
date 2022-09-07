@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import PropType from 'prop-types';
 
-function MovieCard({ id, title, posterPath }) {
+function MovieCard({ id, title, posterPath, grade }) {
   const navigator = useNavigate();
   const IMG_URL = `https://image.tmdb.org/t/p/w200`;
 
@@ -17,6 +17,7 @@ function MovieCard({ id, title, posterPath }) {
       <div>
         <img src={`${IMG_URL}/${posterPath}`} alt={`${title} 포스터`} />
       </div>
+      <p>{grade}점</p>
       <p>{title}</p>
     </MovieCardContainer>
   );
