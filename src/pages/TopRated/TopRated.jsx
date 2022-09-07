@@ -7,13 +7,6 @@ import { apiBase } from '../../api/api';
 import MovieCard from '../../components/common/MovieCard';
 import { AiOutlineArrowUp } from 'react-icons/ai';
 
-const { REACT_APP_API_KEY } = process.env;
-const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}&language=ko`;
-const fetchMovies = async pageParam => {
-  const { data } = await apiBase(pageParam);
-  return data;
-};
-
 export default function TopRated() {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
     ['movies'],
@@ -49,6 +42,15 @@ export default function TopRated() {
     </Container>
   );
 }
+
+const { REACT_APP_API_KEY } = process.env;
+const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}&language=ko`;
+
+const fetchMovies = async pageParam => {
+  const { data } = await apiBase(pageParam);
+  return data;
+};
+
 const Container = styled.div`
   width: 100%;
   position: relative;
