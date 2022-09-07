@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import Skeleton from '../../../components/Skeleton';
+import Skeleton from '../Skeleton';
 
-export default function TopRatedLoader() {
+export default function Loader() {
   const skeltons = Array.from({ length: 20 }, (_, idx) => idx);
   return (
     <Container>
