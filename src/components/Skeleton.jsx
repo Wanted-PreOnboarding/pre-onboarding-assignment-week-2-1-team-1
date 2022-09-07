@@ -2,6 +2,8 @@ import { keyframes, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useMemo } from 'react';
 
+import PropType from 'prop-types';
+
 // interface Props {
 //     width?: number;
 //     height?: number;
@@ -103,3 +105,16 @@ const Base =
 const Content = styled.span`
   opacity: 0;
 `;
+
+SurveySkeleton.propTypes = {
+  width: PropType.number,
+  style: PropType.object,
+  height: PropType.number,
+  circle: PropType.bool,
+  rounded: PropType.bool,
+  count: PropType.number,
+  hUnit: PropType.string,
+  wUnit: PropType.string,
+  animation: PropType.bool,
+  color: PropType.string,
+};
