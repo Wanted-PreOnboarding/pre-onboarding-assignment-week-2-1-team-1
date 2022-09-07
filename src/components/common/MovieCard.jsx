@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
@@ -32,8 +33,8 @@ MovieCard.propTypes = {
 
 export const MovieCardContainer = styled.div`
   width: 200px;
-  height: 300px;
-  margin: 5px;
+  height: 350px;
+  margin: 10px;
   overflow: hidden;
   cursor: pointer;
 
@@ -44,7 +45,6 @@ export const MovieCardContainer = styled.div`
     `}
 
   & div {
-    width: 100%;
     height: 250px;
     border-radius: 20px;
     background-color: #dddddd;
@@ -56,13 +56,15 @@ export const MovieCardContainer = styled.div`
       object-fit: cover;
     }
   }
-
+  & p:nth-of-type(1) {
+    font-size: 14px;
+  }
   & p {
     font-size: 18px;
     font-weight: 700;
     text-align: left;
     margin: 0;
-    padding: 5px;
+    padding: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
