@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollTop from './components/ScrollTop';
 import List from './pages/List/List';
 import Upcoming from './pages/Upcoming/Upcoming';
 import Now_playing from './pages/Now_playing/Now_playing';
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<List />} />
         </Routes>
         <Footer />
+        <ScrollTop />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </AppContainer>
