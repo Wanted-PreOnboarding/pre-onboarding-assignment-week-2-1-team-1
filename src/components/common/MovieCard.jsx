@@ -7,16 +7,16 @@ function MovieCard({ id, title, posterPath }) {
   const navigator = useNavigate();
   const IMG_URL = `https://image.tmdb.org/t/p/w200`;
 
+  const onClick = () => {
+    navigator(`/movie/${id}`);
+  };
+
   return (
-    <MovieCardContainer
-      onClick={() => {
-        navigator(`/movie/${id}`);
-      }}
-    >
+    <MovieCardContainer onClick={onClick}>
       <div>
         <img src={`${IMG_URL}/${posterPath}`} alt="포스터" />
       </div>
-      <p> {title} </p>
+      <p>{title}</p>
     </MovieCardContainer>
   );
 }
@@ -44,6 +44,7 @@ const MovieCardContainer = styled.div`
 
     & img {
       width: 100%;
+      object-fit: cover;
     }
   }
 
