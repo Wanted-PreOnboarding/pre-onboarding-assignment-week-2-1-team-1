@@ -25,7 +25,7 @@
 
 ### (3) 팀원 소개
 
-| 강민규   | 백승전        | 류웅선    | 윤여건      | 김정수    | 최홍규(팀장)⭐️ |
+| 강민규   | 백승전        | 류웅선    | 윤여건      | 김정수    | ✨최홍규 (팀장) |
 | -------- | ------------- | --------- | ----------- | --------- | --------------- |
 | kagrin97 | BaikSeungJeon | unsnruu   | kunnyCode   | sunpl13   | gomgun-lab      |
 | upcoming | home page     | top-rated | now playing | 영화 상세 | 검색 페이지     |
@@ -56,7 +56,7 @@
     - 캐싱에 대한 간단한 개념을 글로 작성해서 README에 포함 or 링크형태로 연결해주세요
 - movies / 리스트 페이지
   - [x] 한번에 가져올 데이터 최대 20
-  - [ ] 제목, 포스터, 별점 표시
+  - [x] 제목, 포스터, 별점 표시
   - [x] 포스터 없는 경우, 대체 이미지 사용
 - movie / 상세 페이지
   - [ ] 비디오 있는 경우, 페이지 진입 시 자동으로 비디오 플레이
@@ -68,7 +68,7 @@
 
 ## 4. 사용한 프레임워크및 라이브러리
 
-- ## axios
+- ## [axios](https://axios-http.com/)
 
   - 호환성
 
@@ -86,9 +86,12 @@
   - 보안
     - axios를 사용할 경우 Client Side에서 발생할 수 있는 XSRF 공격을 막아줍니다.
 
-- ## @emotion
+- ## [@emotion](https://emotion.sh/docs/introduction)
 
   - emotion은 keyframe을 제공합니다. 따라서 모바일 화면에 대응하기 용이할 것 같다는 이유로 선정하였습니다.
+
+- ## [TanStack Query](https://tanstack.com/query/v4/?from=reactQueryV3&original=https://react-query-v3.tanstack.com/)
+- ## [React Infinite Scroller](https://github.com/danbovey/react-infinite-scroller)
 
 ## 5. 폴더 구조 _(수정해야함)_
 
