@@ -1,35 +1,69 @@
-import React, { useState } from 'react';
-import Movie from '../../api/movie';
-import { GET_POSTER } from '../../util/getPoster';
+import React from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { apiBase } from '../../api/api';
+import InfiniteScroll from 'react-infinite-scroller';
+import MovieCard from '../../components/common/MovieCard';
+import styled from 'styled-components';
+
+const { REACT_APP_API_KEY } = process.env;
+const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}&language=ko-KR`;
+const fetchMovieList = async pageParam => {
+  const { data } = await apiBase(pageParam);
+  return data;
+};
+
 const Now_playing = () => {
-  const [movies, setMovies] = useState([]);
-  const [pages] = useState(1);
+  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    ['now_playing'],
+    ({ pageParam = initialUrl }) => fetchMovieList(pageParam),
+    {
+      cacheTime: 3600,
+      staleTime: 90,
+      getNextPageParam: lastPage => {
+        const { page, total_pages } = lastPage;
+        if (page >= total_pages) return undefined;
 
-  useQuery(['upComingMovie', pages], Movie.getNow_playingMovie, {
-    onSuccess: data => {
-      console.info(data.data.results);
-      setMovies(data.data.results);
-    },
-    onError: error => {
-      console.error(error);
-    },
-  });
+        const nextUrl = initialUrl + `&page=${page + 1}`;
+        return nextUrl;
+      },
+    }
+  );
 
+  // useQuery(['upComingMovie', pages], Movie.getNow_playingMovie, {
+  //   onSuccess: data => {
+  //     console.info(data.data.results);
+  //     setMovies(data.data.results);
+  //   },
+  //   onError: error => {
+  //     console.error(error);
+  //   },
+  // });
+
+  if (!data) return <div>no data</div>;
   return (
-    <div>
+    <>
       <h2>현재 상영중인 영화</h2>
-      {movies.length &&
-        movies.map(movie => (
-          <div key={movie.id}>
-            {movie.title}
-            <img width="20px" src={GET_POSTER + movie.poster_path}></img>
-            {movie.vote_average}
-          </div>
-        ))}
-    </div>
+      <InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
+        <Container>
+          {data.pages.map(page =>
+            page.results.map(({ id, poster_path, title }) => (
+              <MovieCard key={id} title={title} posterPath={poster_path} />
+            ))
+          )}
+        </Container>
+      </InfiniteScroll>
+    </>
   );
 };
 
 export default Now_playing;
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  & > div {
+    margin: 0 0.5rem;
+  }
+`;
