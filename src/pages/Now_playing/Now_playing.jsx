@@ -1,45 +1,25 @@
 import React from 'react';
-
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { apiBase } from '../../api/api';
 import InfiniteScroll from 'react-infinite-scroller';
-import MovieCard from '../../components/common/MovieCard';
+import MovieAdvancedCard from '../../components/common/MovieAdvancedCard';
 import styled from '@emotion/styled';
-
-const { REACT_APP_API_KEY } = process.env;
-const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}&language=ko-KR`;
-const fetchMovieList = async pageParam => {
-  const { data } = await apiBase.get(pageParam);
-  return data;
-};
+import Movie from '../../api/movie';
+import SurveySkeleton from '../../components/Skeleton';
+import { Color } from '../../styles/common';
 
 const Now_playing = () => {
-  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    ['now_playing'],
-    ({ pageParam = initialUrl }) => fetchMovieList(pageParam),
-    {
-      cacheTime: 3600,
-      staleTime: 90,
-      getNextPageParam: lastPage => {
-        const { page, total_pages } = lastPage;
-        if (page >= total_pages) return undefined;
-
-        const nextUrl = initialUrl + `&page=${page + 1}`;
-        return nextUrl;
-      },
-    }
-  );
+  const { data, isLoading, fetchNextPage, hasNextPage } = Movie.getMovieList('upcoming');
 
   console.info(data);
-  if (!data) return <div>no data</div>;
+  if (isLoading)
+    return <SurveySkeleton color={Color.GRAY200} width={95} wUnit="%" height={900} rounded />;
   return (
     <>
       <h2>현재 상영중인 영화</h2>
       <InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
         <Container>
           {data.pages.map(page =>
-            page.results.map(({ id, poster_path, title }) => (
-              <MovieCard key={id} title={title} posterPath={poster_path} />
+            page.results.map(movieInfo => (
+              <MovieAdvancedCard key={movieInfo.id} movieInfo={movieInfo} />
             ))
           )}
         </Container>

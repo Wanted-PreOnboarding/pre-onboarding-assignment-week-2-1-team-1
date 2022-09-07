@@ -1,12 +1,13 @@
 /* eslint-disable */
 import React from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 import PropType from 'prop-types';
+import { GET_POSTER } from '../../util/getPoster';
 
 function MovieCard({ id, title, posterPath }) {
   const navigator = useNavigate();
-  const IMG_URL = `https://image.tmdb.org/t/p/w200`;
 
   const onClick = () => {
     navigator(`/movie/${id}`);
@@ -15,7 +16,7 @@ function MovieCard({ id, title, posterPath }) {
   return (
     <MovieCardContainer onClick={onClick}>
       <div>
-        <img src={`${IMG_URL}/${posterPath}`} alt={`${title} 포스터`} />
+        <img src={`${GET_POSTER}/${posterPath}`} alt={`${title} 포스터`} />
       </div>
       <p>{title}</p>
     </MovieCardContainer>
@@ -30,20 +31,27 @@ MovieCard.propTypes = {
   title: PropType.string,
 };
 
-const MovieCardContainer = styled.div`
+export const MovieCardContainer = styled.div`
   width: 200px;
   height: 350px;
   margin: 10px;
   overflow: hidden;
   cursor: pointer;
 
-  & div {
+  ${props =>
+    props.forAdult &&
+    css`
+      cursor: not-allowed;
+    `}
+
+  & > div {
     height: 250px;
     border-radius: 20px;
     background-color: #dddddd;
     overflow: hidden;
+    box-shadow: 0 4px 4px rgba(185, 185, 185, 0.8);
 
-    & img {
+    & > div > img {
       width: 100%;
       object-fit: cover;
     }
@@ -57,5 +65,12 @@ const MovieCardContainer = styled.div`
     text-align: left;
     margin: 0;
     padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &.extended {
+    height: 360px;
   }
 `;
