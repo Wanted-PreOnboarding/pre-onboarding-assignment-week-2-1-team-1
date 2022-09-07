@@ -9,11 +9,10 @@ import Movie from '../../api/movie';
 import Loader from '../../components/common/Loader';
 
 function List() {
-  const { data, isLoading, fetchNextPage, hasNextPage, isFetching } =
-    Movie.getMovieList('popular');
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetching } = Movie.getMovieList('popular');
 
   if (isLoading) return <Loader />;
-    
+
   return (
     <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
       <ListContainer>
@@ -22,14 +21,14 @@ function List() {
           <Link to="/top_rated"> 영화 순위도 보러가기 </Link>
         </div>
 
-          <div className="card-container">
-            {data.pages.map(page =>
-              page.results.map(movieInfo => (
-                <MovieAdvancedCard key={movieInfo.id} movieInfo={movieInfo} />
-              ))
-            )}
-          </div>
-          {isFetching && <Loader />}
+        <div className="card-container">
+          {data.pages.map(page =>
+            page.results.map(movieInfo => (
+              <MovieAdvancedCard key={movieInfo.id} movieInfo={movieInfo} />
+            ))
+          )}
+        </div>
+        {isFetching && <Loader />}
       </ListContainer>
     </InfiniteScroller>
   );
