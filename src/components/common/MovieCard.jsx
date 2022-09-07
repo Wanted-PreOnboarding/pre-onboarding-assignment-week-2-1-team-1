@@ -35,7 +35,7 @@ MovieCard.propTypes = {
   title: PropType.string,
 };
 
-export const MovieCardContainer = styled.div`
+const MovieCardContainer = styled.div`
   width: 200px;
   height: 350px;
   margin: 10px;
@@ -49,7 +49,6 @@ export const MovieCardContainer = styled.div`
   & > div {
     height: 250px;
     border-radius: 20px;
-    background-color: #dddddd;
     overflow: hidden;
     box-shadow: 0 4px 4px rgba(185, 185, 185, 0.8);
     & > div > img {
