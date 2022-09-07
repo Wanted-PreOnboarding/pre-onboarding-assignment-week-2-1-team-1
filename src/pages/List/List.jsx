@@ -36,10 +36,10 @@ function List() {
   );
 
   if (!data) return <div>no data</div>;
-  if (isLoading) return <SurveySkeleton color={Color.GRAY200} width={95} wUnit="%" height={900} rounded />;
+  if (isLoading)
+    return <SurveySkeleton color={Color.GRAY200} width={95} wUnit="%" height={900} rounded />;
   return (
     <ListContainer>
-
       <div className="title-container">
         <p>현재 인기 있는 영화입니다!</p>
         <Link to="/top_rated"> 영화 순위도 보러가기 </Link>
@@ -53,9 +53,7 @@ function List() {
             ))
           )}
         </div>
-        
       </InfiniteScroller>
-      
     </ListContainer>
   );
 }

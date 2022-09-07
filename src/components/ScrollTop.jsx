@@ -4,7 +4,6 @@ import { Color } from '../styles/common';
 import { FaArrowAltCircleUp } from 'react-icons/fa';
 
 export default function ScrollTop() {
-  
   // 디폴트 값 > 버튼 감추기
   const [showBtn, setShowBtn] = useState(false);
 
@@ -12,9 +11,9 @@ export default function ScrollTop() {
   const moveToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth' // 스크롤 부드럽게
-    })
-  }
+      behavior: 'smooth', // 스크롤 부드럽게
+    });
+  };
 
   useEffect(() => {
     const handleShowBtn = () => {
@@ -25,21 +24,23 @@ export default function ScrollTop() {
         // 그 외엔 false
         setShowBtn(false);
       }
-    }
+    };
 
     // 스크롤 발생 시 handleShowButton 실행
-    window.addEventListener('scroll', handleShowBtn)
+    window.addEventListener('scroll', handleShowBtn);
 
     return () => {
-      window.removeEventListener('scroll', handleShowBtn)
-    }
-  }, [])
+      window.removeEventListener('scroll', handleShowBtn);
+    };
+  }, []);
 
-  return showBtn && (
-    <ScrollTopBtn onClick={moveToTop}>
-      <FaArrowAltCircleUp className='top-btn'/>
-    </ScrollTopBtn>
-  )
+  return (
+    showBtn && (
+      <ScrollTopBtn onClick={moveToTop}>
+        <FaArrowAltCircleUp className="top-btn" />
+      </ScrollTopBtn>
+    )
+  );
 }
 
 const ScrollTopBtn = styled.div`
@@ -50,11 +51,10 @@ const ScrollTopBtn = styled.div`
 
   .top-btn {
     font-size: 34px;
-    transition: .3s;
+    transition: 0.3s;
 
     &:hover {
-      color: ${ Color.BLUE200 };
+      color: ${Color.BLUE200};
     }
   }
 `;
-
