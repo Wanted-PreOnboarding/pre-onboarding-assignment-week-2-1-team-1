@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import InfiniteScroller from 'react-infinite-scroller';
@@ -23,6 +23,22 @@ export default function TopRated() {
       },
     }
   );
+  const [isVisibleScrollTop, setIsVisibleScrollTop] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight < window.scrollY) {
+        setIsVisibleScrollTop(true);
+      } else {
+        setIsVisibleScrollTop(false);
+      }
+    });
+  }, []);
+
+  const onClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   if (!data) return <span>no data</span>;
   return (
     <Container>
@@ -36,7 +52,7 @@ export default function TopRated() {
           )}
         </CardContinaer>
       </InfiniteScroller>
-      <ScrollTopButton>
+      <ScrollTopButton onClick={onClick} isVisible={isVisibleScrollTop}>
         <AiOutlineArrowUp />
       </ScrollTopButton>
     </Container>
@@ -56,6 +72,7 @@ const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  scroll-behavior: smooth;
   & h2 {
     margin-left: 5rem;
   }
@@ -65,6 +82,7 @@ const CardContinaer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 `;
+//todo: animation을 추가하면 좋을 듯 합니다.
 const ScrollTopButton = styled.div`
   width: 64px;
   height: 64px;
@@ -75,6 +93,9 @@ const ScrollTopButton = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
-  background-color: red;
+  background-color: white;
+  border: 1px solid black;
   border-radius: 50%;
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  cursor: pointer;
 `;
