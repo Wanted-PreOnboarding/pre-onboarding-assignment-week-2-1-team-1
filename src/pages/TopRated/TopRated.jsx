@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import InfiniteScroller from 'react-infinite-scroller';
+import { AiOutlineArrowUp } from 'react-icons/ai';
 
 import { apiBase } from '../../api/api';
 import MovieCard from '../../components/common/MovieCard';
-import { AiOutlineArrowUp } from 'react-icons/ai';
+import TopRatedLoader from './components/TopRatedLoader';
 
 export default function TopRated() {
-  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
+  const [isVisibleScrollTop, setIsVisibleScrollTop] = useState(false);
+  const { data, fetchNextPage, hasNextPage, isLoading, isFetching } = useInfiniteQuery(
     ['movies'],
     ({ pageParam = initialUrl }) => fetchMovies(pageParam),
     {
@@ -23,23 +25,25 @@ export default function TopRated() {
       },
     }
   );
-  const [isVisibleScrollTop, setIsVisibleScrollTop] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
+    const clickEventHandler = () => {
       if (window.innerHeight < window.scrollY) {
         setIsVisibleScrollTop(true);
       } else {
         setIsVisibleScrollTop(false);
       }
-    });
+    };
+    window.addEventListener('scroll', clickEventHandler);
   }, []);
 
-  const onClick = () => {
+  const onClickScrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (!data) return <span>no data</span>;
+  if (isLoading) {
+    return <TopRatedLoader />;
+  }
   return (
     <Container>
       <h2>영화 순위</h2>
@@ -50,9 +54,10 @@ export default function TopRated() {
               <MovieCard key={id} title={title} posterPath={poster_path} />
             ))
           )}
+          {isFetching && <TopRatedLoader />}
         </CardContinaer>
       </InfiniteScroller>
-      <ScrollTopButton onClick={onClick} isVisible={isVisibleScrollTop}>
+      <ScrollTopButton onClick={onClickScrollTop} isVisible={isVisibleScrollTop}>
         <AiOutlineArrowUp />
       </ScrollTopButton>
     </Container>
