@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { useNavigate } from 'react-router-dom';
 import PropType from 'prop-types';
 import { GET_POSTER } from '../../util/getPoster';
@@ -34,6 +35,13 @@ export const MovieCardContainer = styled.div`
   height: 300px;
   margin: 5px;
   overflow: hidden;
+  cursor: pointer;
+
+  ${props =>
+    props.forAdult &&
+    css`
+      cursor: not-allowed;
+    `}
 
   & div {
     width: 100%;
@@ -43,7 +51,7 @@ export const MovieCardContainer = styled.div`
     overflow: hidden;
     box-shadow: 0 4px 4px rgba(185, 185, 185, 0.8);
 
-    & img {
+    & div > img {
       width: 100%;
       object-fit: cover;
     }

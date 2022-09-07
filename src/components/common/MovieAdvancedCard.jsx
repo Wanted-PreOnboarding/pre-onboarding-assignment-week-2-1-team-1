@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 import { MovieCardContainer } from './MovieCard';
 import { GET_POSTER } from '../../util/getPoster';
@@ -9,22 +10,26 @@ const MovieAdvancedCard = ({ movieInfo }) => {
   const { adult, id, title, poster_path, popularity, release_data, vote_average, vote_count } =
     movieInfo;
 
+  const forAdult = adult === true;
+
   return (
     <MovieCardContainer
       className="extended"
+      forAdult={forAdult === true}
       onClick={() => {
-        navigator(`/movie/${id}`);
+        !forAdult && navigator(`/movie/${id}`);
       }}
     >
-      <div>
-        <img src={`${GET_POSTER}${poster_path}`} alt={`${title} 포스터`} />
-      </div>
+      <ImgWrapper>
+        {forAdult && <Img19 src="/images/19.png" alt="19금 로고" />}
+        <img className="movieImg" src={`${GET_POSTER}${poster_path}`} alt={`${title} 포스터`} />
+      </ImgWrapper>
+
       <p>{title}</p>
-      <span>{adult === true || '성인용🔞로고 확인'} </span>
+      <span>평점{vote_average} </span>
+      <span>투표참여인원{vote_count} </span>
       <span>popularity{popularity} </span>
       <span>release_data{release_data} </span>
-      <span>vote_average{vote_average} </span>
-      <span>vote_count{vote_count} </span>
     </MovieCardContainer>
   );
 };
@@ -35,9 +40,20 @@ MovieAdvancedCard.propTypes = {
   movieInfo: PropType.object,
 };
 
-// MovieAdvancedCard.propTypes = {
-//   id: PropType.number,
-//   posterPath: PropType.string,
-//   title: PropType.string,
-//   popularity: PropType.number,
-// };
+const ImgWrapper = styled.div`
+  position: relative;
+
+  & img.moiveImg {
+    width: 100%;
+    object-fit: cover;
+    display: flex;
+  }
+`;
+
+const Img19 = styled.img`
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+`;
