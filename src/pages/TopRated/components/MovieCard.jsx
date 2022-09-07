@@ -2,6 +2,7 @@ import React from 'react';
 import PropType from 'prop-types';
 import styled from '@emotion/styled';
 
+//!: 현재 common/MovieCard의 참고용으로 남겨둠. 이후 삭제
 export default function MovieCard({ poster_path, release_date, title, popularity, vote_average }) {
   const IMG_URL = `https://image.tmdb.org/t/p/w200`;
 
@@ -19,7 +20,6 @@ export default function MovieCard({ poster_path, release_date, title, popularity
     </Container>
   );
 }
-
 MovieCard.propTypes = {
   id: PropType.number,
   poster_path: PropType.string,
@@ -33,7 +33,7 @@ MovieCard.propTypes = {
 };
 
 const Container = styled.div`
-  width: 162px;
+  width: 320px;
   display: flex;
   flex-direction: column;
   & img {
