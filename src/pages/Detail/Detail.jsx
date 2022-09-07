@@ -89,7 +89,7 @@ function Detail() {
                 <span className="minute">(분)</span>
               </span>
             </InfoMovie>
-            <Tagline>&quot;{data.tagline}&quot;</Tagline>
+            {data.tagline !== '' && <Tagline>&quot;{data.tagline}&quot;</Tagline>}
             <OverView>
               <h1>개요</h1>
               <span>{data.overview}</span>
