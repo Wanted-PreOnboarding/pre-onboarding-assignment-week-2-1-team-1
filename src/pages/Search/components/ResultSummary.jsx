@@ -27,7 +27,10 @@ export default ResultSummary;
 
 const Container = styled.div`
   display: block;
-  width: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
   border: 1px solid ${Color.GRAY100};
   border-radius: 8px;
   background-color: ${Color.Navy};

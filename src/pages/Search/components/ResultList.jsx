@@ -6,7 +6,7 @@ import ResultItem from './ResultItem';
 
 function ResultList({ movies, fetchNextPage, hasNextPage, isLoading, isError, error }) {
   if (!movies) return <p>영화를 검색해주세요.</p>;
-  if (!movies && !isLoading) return <p>일치하는 영화가 없습니다.</p>;
+  if (isLoading) return <p>로딩 중 입니다.</p>;
   if (isError) return <p>Error {error.toString()}</p>;
 
   // 여기서 movies 로그 찍어보면 무한으로 fetch 하려고함...
@@ -18,7 +18,9 @@ function ResultList({ movies, fetchNextPage, hasNextPage, isLoading, isError, er
         return page.data.results.map(movie => (
           <ResultItem
             key={movie.id}
+            id={movie.id}
             title={movie.title}
+            vote_average={movie.vote_average}
             release_date={movie.release_date}
             overview={movie.overview}
             popularity={movie.popularity}
