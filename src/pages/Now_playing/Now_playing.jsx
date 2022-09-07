@@ -3,7 +3,7 @@ import React from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { apiBase } from '../../api/api';
 import InfiniteScroll from 'react-infinite-scroller';
-import MovieCard from '../../components/common/MovieCard';
+import MovieAdvancedCard from '../../components/common/MovieAdvancedCard';
 import styled from '@emotion/styled';
 
 const { REACT_APP_API_KEY } = process.env;
@@ -38,8 +38,14 @@ const Now_playing = () => {
       <InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
         <Container>
           {data.pages.map(page =>
-            page.results.map(({ id, poster_path, title }) => (
-              <MovieCard key={id} title={title} posterPath={poster_path} />
+            page.results.map(({ id, poster_path, title, popularity }) => (
+              <MovieAdvancedCard
+                key={id}
+                id={id}
+                title={title}
+                posterPath={poster_path}
+                popularity={popularity}
+              />
             ))
           )}
         </Container>
