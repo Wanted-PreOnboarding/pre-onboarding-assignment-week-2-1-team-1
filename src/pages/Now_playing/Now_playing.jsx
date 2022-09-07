@@ -9,6 +9,7 @@ const Now_playing = () => {
 
   useQuery(['upComingMovie', pages], Movie.getNow_playingMovie, {
     onSuccess: data => {
+      console.info(data.data.results);
       setMovies(data.data.results);
     },
     onError: error => {
@@ -22,7 +23,7 @@ const Now_playing = () => {
       {movies.length &&
         movies.map(movie => (
           <div key={movie.id}>
-            {movie.original_title}
+            {movie.title}
             <img width="20px" src={GET_POSTER + movie.poster_path}></img>
             {movie.vote_average}
           </div>
