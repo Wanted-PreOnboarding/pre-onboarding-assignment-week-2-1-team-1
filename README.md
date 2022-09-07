@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+# 📺 I.M.LABFLIX
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 목차
 
-## Available Scripts
+- [1. 프로젝트 Config](#1-프로젝트-config)
+  - 데모페이지
+  - 코딩컨벤션
+  - 팀원 소개
+- [2. 설치, 환경설정, 실행방법](#2-설치-환경설정-실행방법)
+  - 설치, 환경 설정
+  - 실행
+- [3. 구현된 기능 목록](#3-구현된-기능-목록)
+  - 사용자 기능
+  - 관리자 기능
+- [4. 사용한 프레임워크및 라이브러리](#4-사용한-프레임워크및-라이브러리)
+- [5. 폴더 구조](#5-폴더-구조)
+  - 폴더 구조 설명
+  - 폴더 구조 tree
 
-In the project directory, you can run:
+## 1. 프로젝트 Config
 
-### `npm start`
+### (1) 데모페이지
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### (2) [코딩 컨벤션 노션주소](https://instinctive-moustache-aba.notion.site/WPO-FE-6-1-Coding-Convention-6a0123a0196343ea88c8434a3c157812#d00f53fad5c545a4b1e2aba7f6c62f31)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### (3) 팀원 소개
 
-### `npm test`
+| 강민규   | 백승전        | 류웅선    | 윤여건      | 김정수    | 최홍규(팀장)⭐️ |
+| -------- | ------------- | --------- | ----------- | --------- | --------------- |
+| kagrin97 | BaikSeungJeon | unsnruu   | kunnyCode   | sunpl13   | gomgun-lab      |
+| upcoming | home page     | top-rated | now playing | 영화 상세 | 검색 페이지     |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 2. 설치, 환경설정, 실행방법
 
-### `npm run build`
+- ### 설치, 환경 설정
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  ```bash
+  > git clone https://github.com/wanted-fe-6/wanted-pre-onboarding-fe-6-2-1.git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  > npm install
+  ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- ### 실행
 
-### `npm run eject`
+  ```bash
+  > npm run start // 프로젝트가 실행됩니다.
+  ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 3. 구현된 기능 목록
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 공통
+  - [x] Loading 상태 표기
+  - [x] Infinite scroll
+  - [x] 스크롤 감지하여 ScrollUp button 표시되도록, 누를 시 최상단으로 스크롤 이동
+  - [ ] API Response 데이터 캐쉬 (라이브러리 사용)
+    - 캐싱에 대한 간단한 개념을 글로 작성해서 README에 포함 or 링크형태로 연결해주세요
+- movies / 리스트 페이지
+  - [x] 한번에 가져올 데이터 최대 20
+  - [ ] 제목, 포스터, 별점 표시
+  - [x] 포스터 없는 경우, 대체 이미지 사용
+- movie / 상세 페이지
+  - [ ] 비디오 있는 경우, 페이지 진입 시 자동으로 비디오 플레이
+  - [ ] 제목, 포스터, 별점, 제작 연도, 장르 데이터 활용해서 UI 표기
+  - [ ] 그 외의 데이터 추가 활용 여부는 자유
+- search
+  - [ ] 제목, 포스터, 별점
+  - [ ] 포스터 없는 경우, 대체 이미지 사용
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 4. 사용한 프레임워크및 라이브러리
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- ## axios
 
-## Learn More
+  - 호환성
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    - 기존의 fetch의 경우 웹 브라우저가 구버전일경우 지원하지 않는 경우가 많습니다.
+      axios의 경우 훨씬더 지원 범위가 넓기 때문에 사용합니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - 가독성
 
-### Code Splitting
+    - fetch는 url을 입력할때, Param이나 Query부분을 문자열 형태로 길게 작성해야하는 반면, axios는 객체의 형태로 Param, Query를 설정할 수 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  - 편의성
 
-### Analyzing the Bundle Size
+    - 보통 fetch를 이용하는 경우 데이터를 전달받을 때마다 JSON 형태로 변환해주는 작업이 필요합니다. 하지만 axios는 자동으로 JSON으로 변환해 주기 때문에 더 편하게 사용할 수 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  - 보안
+    - axios를 사용할 경우 Client Side에서 발생할 수 있는 XSRF 공격을 막아줍니다.
 
-### Making a Progressive Web App
+- ## @emotion
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  - emotion은 keyframe을 제공합니다. 따라서 모바일 화면에 대응하기 용이할 것 같다는 이유로 선정하였습니다.
 
-### Advanced Configuration
+## 5. 폴더 구조 _(수정해야함)_
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- ### 폴더 구조 설명
 
-### Deployment
+  | 폴더           | 용도                                    |
+  | -------------- | --------------------------------------- |
+  | **assets/svg** | 필요한 리소스들을 모은 폴더             |
+  | **components** | 각 페이지에서 각 섹션을 컴포넌트로 분리 |
+  | **hooks**      | 재사용할수있는 api를 훅으로 만든 폴더   |
+  | **mocks**      | api데이터와 api handler                 |
+  | **pages**      | 각각 하나의 페이지를 이룬파일 폴더      |
+  | **styles**     | 자주쓰이는 스타일과 글로벌 리셋파일     |
+  | **utils**      | 재사용할수있는 모듈을 만든 폴더         |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  <details>
+  <summary>🎄 폴더 tree 접기/펼치기</summary>
+  <pre>
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</pre>
+</details>
