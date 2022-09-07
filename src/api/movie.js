@@ -11,7 +11,7 @@ const fetchMovies = async pageParam => {
 
 class Movie {
   getMovieList(url) {
-    const initialUrl = `/movie/${url}?api_key=${REACT_APP_API_KEY}`;
+    const initialUrl = `/movie/${url}?api_key=${REACT_APP_API_KEY}&language=ko-KR`;
     return useInfiniteQuery([url], ({ pageParam = initialUrl }) => fetchMovies(pageParam), {
       cacheTime: 3600,
       staleTime: 90,
