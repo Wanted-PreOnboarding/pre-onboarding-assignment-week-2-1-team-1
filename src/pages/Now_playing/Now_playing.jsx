@@ -4,7 +4,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { apiBase } from '../../api/api';
 import InfiniteScroll from 'react-infinite-scroller';
 import MovieCard from '../../components/common/MovieCard';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const { REACT_APP_API_KEY } = process.env;
 const initialUrl = `/movie/top_rated?api_key=${REACT_APP_API_KEY}&language=ko-KR`;
@@ -30,15 +30,6 @@ const Now_playing = () => {
     }
   );
 
-  // useQuery(['upComingMovie', pages], Movie.getNow_playingMovie, {
-  //   onSuccess: data => {
-  //     console.info(data.data.results);
-  //     setMovies(data.data.results);
-  //   },
-  //   onError: error => {
-  //     console.error(error);
-  //   },
-  // });
   console.info(data);
   if (!data) return <div>no data</div>;
   return (
