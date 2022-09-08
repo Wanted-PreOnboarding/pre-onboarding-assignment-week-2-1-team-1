@@ -45,7 +45,7 @@ const Container = styled.div`
   }
 `;
 
-const Header = styled.header`
+export const Header = styled.header`
   display: flex;
   font-size: 1.5rem;
   font-weight: 600;
