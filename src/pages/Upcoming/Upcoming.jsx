@@ -6,14 +6,15 @@ import { BiCameraMovie } from 'react-icons/bi';
 
 import Movie from '../../api/movie';
 import MovieAdvancedCard from '../../components/common/MovieAdvancedCard';
-import SurveySkeleton from '../../components/Skeleton';
 import { Color } from '../../styles/common';
+import Loader from '../../components/common/Loader';
 
 function Upcoming() {
-  const { data, isLoading, fetchNextPage, hasNextPage } = Movie.getMovieList('upcoming');
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetching } =
+    Movie.getMovieList('upcoming');
 
-  if (isLoading)
-    return <SurveySkeleton color={Color.GRAY200} width={95} wUnit="%" height={900} rounded />;
+  if (isLoading) return <Loader />;
+
   return (
     <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
       <Header>
@@ -27,6 +28,7 @@ function Upcoming() {
             <MovieAdvancedCard key={movieInfo.id} movieInfo={movieInfo} />
           ))
         )}
+        {isFetching && <Loader />}
       </Container>
     </InfiniteScroller>
   );
