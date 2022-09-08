@@ -7,22 +7,25 @@ import { Color } from '../styles/common';
 function Header() {
   const navigate = useNavigate();
   return (
-    <HeaderContainer>
-      <img
-        src="/images/logo.png"
-        alt="logo"
-        onClick={() => {
-          navigate('/');
-        }}
-      />
-      <nav>
-        <Link to="/">홈</Link>
-        <Link to="/now_playing">현재 상영작</Link>
-        <Link to="/upcoming">상영 예정작</Link>
-        <Link to="/top_rated">영화 순위</Link>
-        <Link to="/search">영화 검색</Link>
-      </nav>
-    </HeaderContainer>
+    <>
+      <HeaderContainer>
+        <img
+          src="/images/logo.png"
+          alt="logo"
+          onClick={() => {
+            navigate('/');
+          }}
+        />
+        <nav>
+          <Link to="/">홈</Link>
+          <Link to="/now_playing">현재 상영작</Link>
+          <Link to="/upcoming">상영 예정작</Link>
+          <Link to="/top_rated">영화 순위</Link>
+          <Link to="/search">영화 검색</Link>
+        </nav>
+      </HeaderContainer>
+      <div style={{ height: '100px', marginTop: '20px' }}>공백</div>
+    </>
   );
 }
 
