@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import InfiniteScroller from 'react-infinite-scroller';
-// import { AiOutlineArrowUp } from 'react-icons/ai';
 
 import { apiBase } from '../../api/api';
 import MovieCard from '../../components/common/MovieAdvancedCard';
