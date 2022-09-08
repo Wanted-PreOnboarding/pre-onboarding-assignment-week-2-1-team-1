@@ -47,7 +47,7 @@ function Footer() {
 export default Footer;
 
 const FooterContainer = styled.footer`
-  position: fixed;
+  margin-top: 57vh;
   z-index: 1000;
   width: 100%;
   bottom: 0;
