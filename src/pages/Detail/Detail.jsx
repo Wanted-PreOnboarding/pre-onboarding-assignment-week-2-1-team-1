@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Skeleton from '../../components/Skeleton';
+import YouTube from 'react-youtube';
 const Card = ({ name, conuntry }) => {
   return (
     <CardStyle>
@@ -46,9 +47,21 @@ const Placeholder = () => (
 function Detail() {
   const params = useParams();
   const IMG_URL = `https://image.tmdb.org/t/p/w200`;
-  const initialUrl = `https://api.themoviedb.org/3/movie/${params.id}?api_key=${process.env.REACT_APP_API_KEY}&language=ko-KR`;
+  const initialInfoUrl = `https://api.themoviedb.org/3/movie/${params.id}?api_key=${process.env.REACT_APP_API_KEY}&language=ko-KR`;
+  const initialYoutubeUrl = `https://api.themoviedb.org/3/movie/${params.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
   const getMovieDetail = async () => {
-    return fetch(initialUrl, {
+    return fetch(initialInfoUrl, {
+      method: 'GET',
+    })
+      .then(res => {
+        if (!res.ok) throw new Error('http 에러');
+        return res.json();
+      })
+      .then(data => data);
+  };
+
+  const getYoutubeUrl = async () => {
+    return fetch(initialYoutubeUrl, {
       method: 'GET',
     })
       .then(res => {
@@ -70,6 +83,12 @@ function Detail() {
   };
 
   const { isLoading, data } = useQuery(['movieDetail', Number(params.id)], getMovieDetail, {
+    refetchOnWindowFocus: false,
+    retry: 0,
+    staleTime: 60 * 1000 * 60,
+  });
+
+  const res = useQuery(['YoutubeInfo', Number(params.id)], getYoutubeUrl, {
     refetchOnWindowFocus: false,
     retry: 0,
     staleTime: 60 * 1000 * 60,
@@ -141,6 +160,10 @@ function Detail() {
             ))}
           </div>
         </div>
+        <div>
+          <span className="title">데모영상</span>
+          {res.isFetched && <YouTube videoId={res.data.results[0].key} />}
+        </div>
       </ProductionContainer>
     </main>
   );
@@ -201,6 +224,7 @@ const Warpper = styled.div`
 
 const ProductionContainer = styled.section`
   margin-top: 10px;
+
   width: 100%;
   & .title {
     font-weight: 700;
@@ -209,7 +233,7 @@ const ProductionContainer = styled.section`
   & .production_container {
     width: 100%;
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 25px;
     display: flex;
     overflow-x: scroll;
 
