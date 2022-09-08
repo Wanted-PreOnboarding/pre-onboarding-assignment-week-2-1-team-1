@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import InfiniteScroller from 'react-infinite-scroller';
-import { AiOutlineArrowUp } from 'react-icons/ai';
+// import { AiOutlineArrowUp } from 'react-icons/ai';
 
 import { apiBase } from '../../api/api';
-import MovieCard from '../../components/common/MovieCard';
+import MovieCard from '../../components/common/MovieAdvancedCard';
 import Loader from '../../components/common/Loader';
+import ScorllTop from '../../components/ScrollTop';
+import { Color } from '../../styles/common';
 
 export default function TopRated() {
-  const [isVisibleScrollTop, setIsVisibleScrollTop] = useState(false);
   const { data, fetchNextPage, hasNextPage, isLoading, isFetching } = useInfiniteQuery(
     ['movies'],
     ({ pageParam = initialUrl }) => fetchMovies(pageParam),
@@ -26,21 +27,6 @@ export default function TopRated() {
     }
   );
 
-  useEffect(() => {
-    const clickEventHandler = () => {
-      if (window.innerHeight < window.scrollY) {
-        setIsVisibleScrollTop(true);
-      } else {
-        setIsVisibleScrollTop(false);
-      }
-    };
-    window.addEventListener('scroll', clickEventHandler);
-  }, []);
-
-  const onClickScrollTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   if (isLoading) {
     return <Loader />;
   }
@@ -50,16 +36,12 @@ export default function TopRated() {
       <InfiniteScroller loadMore={fetchNextPage} hasMore={hasNextPage}>
         <CardContinaer>
           {data.pages.map(page =>
-            page.results.map(({ id, poster_path, title }) => (
-              <MovieCard key={id} id={id} title={title} posterPath={poster_path} />
-            ))
+            page.results.map(movie => <MovieCard key={movie.id} movieInfo={movie} />)
           )}
           {isFetching && <Loader />}
         </CardContinaer>
       </InfiniteScroller>
-      <ScrollTopButton onClick={onClickScrollTop} isVisible={isVisibleScrollTop}>
-        <AiOutlineArrowUp />
-      </ScrollTopButton>
+      <ScorllTop />
     </Container>
   );
 }
@@ -78,29 +60,20 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   scroll-behavior: smooth;
+  align-items: center;
   & h2 {
-    margin-left: 5rem;
+    margin: 0;
+    margin-bottom: 10px;
+    border: 2px solid ${Color.GRAY200};
+    border-radius: 15px;
+    padding: 2px 5px;
   }
 `;
 const CardContinaer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-`;
-//todo: animation을 추가하면 좋을 듯 합니다.
-const ScrollTopButton = styled.div`
-  width: 64px;
-  height: 64px;
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 50%;
-  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
-  cursor: pointer;
+  & > div {
+    margin: 0.5rem 0.5rem;
+  }
 `;

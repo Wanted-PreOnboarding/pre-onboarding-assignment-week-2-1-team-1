@@ -16,7 +16,8 @@ export default function Loader() {
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   & span {
-    margin: 5px;
+    margin: 8px;
   }
 `;
