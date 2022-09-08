@@ -24,7 +24,7 @@ function Header() {
           <Link to="/search">영화 검색</Link>
         </nav>
       </HeaderContainer>
-      <div style={{ height: '100px', marginTop: '20px' }}>공백</div>
+      <div style={{ height: '100px', marginBottom: '20px' }}>공백</div>
     </>
   );
 }
