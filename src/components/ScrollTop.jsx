@@ -45,8 +45,8 @@ export default function ScrollTop() {
 
 const ScrollTopBtn = styled.div`
   position: fixed;
-  right: 50px;
-  bottom: 50px;
+  right: 30px;
+  bottom: 120px;
   cursor: pointer;
 
   .top-btn {

@@ -47,11 +47,16 @@ function Footer() {
 export default Footer;
 
 const FooterContainer = styled.footer`
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  bottom: 0;
+
   & ul {
     height: 50px;
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     gap: 70px;
     margin: 0;

@@ -29,13 +29,15 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.header`
+  width: 100%;
   height: 100px;
   background-color: #ffffff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  z-index: 1;
+  position: fixed;
+  z-index: 10000;
 
   & img {
     height: 80px;
