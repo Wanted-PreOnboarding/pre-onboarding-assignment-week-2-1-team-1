@@ -4,7 +4,7 @@ import { FaStarHalfAlt, FaStar } from 'react-icons/fa';
 import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-
+import Skeleton from '../../components/Skeleton';
 const Card = ({ name, conuntry }) => {
   return (
     <CardStyle>
@@ -14,6 +14,34 @@ const Card = ({ name, conuntry }) => {
     </CardStyle>
   );
 };
+
+const Placeholder = () => (
+  <PlaceHolderWrapper>
+    <Warpper>
+      <Skeleton width={200} height={400} />
+      &nbsp;
+      <div>
+        <Skeleton width={400} height={40} rounded />
+        &nbsp;
+        <Skeleton width={150} height={25} rounded />
+        <br />
+        <Skeleton width={200} height={18} rounded />
+        <br />
+        <Skeleton width={170} height={18} rounded />
+        <br />
+        <Skeleton width={158} height={14} rounded />
+        <br />
+        <Skeleton width={100} wUnit="%" height={20} />
+        <br />
+        <Skeleton width={100} wUnit="%" height={20} />
+        <br />
+        <Skeleton width={90} wUnit="%" height={20} />
+        <br />
+        <Skeleton width={170} height={12} rounded />
+      </div>
+    </Warpper>
+  </PlaceHolderWrapper>
+);
 
 function Detail() {
   const params = useParams();
@@ -48,7 +76,7 @@ function Detail() {
   });
 
   if (isLoading) {
-    return <div>...loading</div>;
+    return <Placeholder />;
   }
   const Header = styled.section`
     border-bottom: 1px solid var(--primaryColor);
@@ -210,4 +238,8 @@ const CardStyle = styled.div`
   & span {
     font-size: 0.5rem;
   }
+`;
+
+const PlaceHolderWrapper = styled.div`
+  display: flex;
 `;
